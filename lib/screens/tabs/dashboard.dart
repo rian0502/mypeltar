@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:mypeltar/components/dashboard_profile.dart';
 import 'package:mypeltar/components/menu.dart';
 
 import '../../components/search.dart';
@@ -15,11 +17,61 @@ class _DashboardPageState extends State<DashboardPage> {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const SizedBox(
+            height: 30,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const DashboardProfile(),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.notifications),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 100,
+          ),
           SearchBar(),
-          SizedBox(height: 30,),
-          Menu(image: 'assets/images/maintenance.png', route: '/route', title: 'Title')
+          const SizedBox(
+            height: 40,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 15, right: 15),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'We care about our assets,\nMypeltar.',
+                    style: GoogleFonts.poppins(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 60,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Menu(
+                  image: 'assets/images/maintenance.png',
+                  route: '/route',
+                  title: 'Title'),
+              Menu(
+                  image: 'assets/images/maintenance.png',
+                  route: '/route',
+                  title: 'Title')
+            ],
+          )
         ],
       ),
     );
