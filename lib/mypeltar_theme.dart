@@ -13,16 +13,16 @@ class MyPeltarTheme{
   static const MaterialColor color = MaterialColor(
     0xFFB74093, // 0% comes in here, this will be color picked if no shade is selected when defining a Color property which doesn’t require a swatch.
     <int, Color>{
-      50: const Color(0xFFB74093 ),//10%
-      100: const Color(0xFFB74093),//20%
-      200: const Color(0xFFB74093),//30%
-      300: const Color(0xFFB74093),//40%
-      400: const Color(0xFFB74093),//50%
-      500: const Color(0xFFB74093),//60%
-      600: const Color(0xFFB74093),//70%
-      700: const Color(0xFFB74093),//80%
-      800: const Color(0xFFB74093),//90%
-      900: const Color(0xFFB74093),//100%
+      50:  Color(0xFFB74093),//10%
+      100: Color(0xFFB74093),//20%
+      200: Color(0xFFB74093),//30%
+      300: Color(0xFFB74093),//40%
+      400: Color(0xFFB74093),//50%
+      500: Color(0xFFB74093),//60%
+      600: Color(0xFFB74093),//70%
+      700: Color(0xFFB74093),//80%
+      800: Color(0xFFB74093),//90%
+      900: Color(0xFFB74093),//100%
     },
   );
 
