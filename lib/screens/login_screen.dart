@@ -64,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Expanded(
                   child: Container(
                 decoration: const BoxDecoration(
-                    color: Color(0xFFB74093),
+                    color: Color(0xFF00337C),
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(55),
                         topRight: Radius.circular(55))),
@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 borderRadius: BorderRadius.circular(10),
                                 boxShadow: const [
                                   BoxShadow(
-                                      color: Color(0xFFB74093),
+                                      color: Color(0xFF00337C),
                                       blurRadius: 20,
                                       offset: Offset(0, 10))
                                 ]),
@@ -125,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: const [
                               BoxShadow(
-                                  color: Color(0xFFB74093),
+                                  color: Color(0xFF00337C),
                                   blurRadius: 20,
                                   offset: Offset(0, 10))
                             ]),
@@ -150,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: Colors.white,
                             boxShadow: const [
                               BoxShadow(
-                                  color: Color(0xFFB74093),
+                                  color: Color(0xFF00337C),
                                   blurRadius: 200,
                                   offset: Offset(0, 10))
                             ]),
@@ -162,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Text(
                               'Login',
                               style: TextStyle(
-                                  color: Color(0xFFB74093),
+                                  color: Color(0xFF00337C),
                                   fontWeight: FontWeight.bold),
                             ),
                           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mypeltar/components/dashboard_profile.dart';
 import 'package:mypeltar/components/menu.dart';
@@ -16,8 +17,7 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+      child: ListView(
         children: [
           const SizedBox(
             height: 30,
@@ -27,7 +27,9 @@ class _DashboardPageState extends State<DashboardPage> {
             children: [
               const DashboardProfile(),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.goNamed('notification', params: {'tab': '0'});
+                },
                 icon: const Icon(Icons.notifications),
               ),
             ],

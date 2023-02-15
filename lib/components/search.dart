@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SearchBar extends StatefulWidget {
   const SearchBar({Key? key}) : super(key: key);
@@ -40,7 +41,9 @@ class _SearchBarState extends State<SearchBar> {
                   ),
                 ),
               ),
-              IconButton(onPressed: (){}, icon: const Icon(Icons.document_scanner))
+              IconButton(onPressed: (){
+                context.goNamed('scan', params: {'tab': '0'});
+              }, icon: const Icon(Icons.document_scanner))
             ],
           ),
         ));

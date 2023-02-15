@@ -11,18 +11,18 @@ class MyPeltarTheme{
     headline6: GoogleFonts.poppins(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
   );
   static const MaterialColor color = MaterialColor(
-    0xFFB74093, // 0% comes in here, this will be color picked if no shade is selected when defining a Color property which doesn’t require a swatch.
+    0xFF00337C, // 0% comes in here, this will be color picked if no shade is selected when defining a Color property which doesn’t require a swatch.
     <int, Color>{
-      50:  Color(0xFFB74093),//10%
-      100: Color(0xFFB74093),//20%
-      200: Color(0xFFB74093),//30%
-      300: Color(0xFFB74093),//40%
-      400: Color(0xFFB74093),//50%
-      500: Color(0xFFB74093),//60%
-      600: Color(0xFFB74093),//70%
-      700: Color(0xFFB74093),//80%
-      800: Color(0xFFB74093),//90%
-      900: Color(0xFFB74093),//100%
+      50:  Color(0xFF00337C),//10%
+      100: Color(0xFF00337C),//20%
+      200: Color(0xFF00337C),//30%
+      300: Color(0xFF00337C),//40%
+      400: Color(0xFF00337C),//50%
+      500: Color(0xFF00337C),//60%
+      600: Color(0xFF00337C),//70%
+      700: Color(0xFF00337C),//80%
+      800: Color(0xFF00337C),//90%
+      900: Color(0xFF00337C),//100%
     },
   );
 
