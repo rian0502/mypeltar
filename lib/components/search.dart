@@ -33,17 +33,20 @@ class _SearchBarState extends State<SearchBar> {
               const SizedBox(
                 width: 10,
               ),
-              Expanded(
+              const Expanded(
                 child: TextField(
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Search',
                   ),
                 ),
               ),
-              IconButton(onPressed: (){
-                context.goNamed('scan', params: {'tab': '0'});
-              }, icon: const Icon(Icons.document_scanner))
+              IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+              IconButton(
+                  onPressed: () {
+                    context.goNamed('scan', params: {'tab': '0'});
+                  },
+                  icon: const Icon(Icons.document_scanner))
             ],
           ),
         ));

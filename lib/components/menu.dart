@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Menu extends StatelessWidget {
@@ -31,7 +32,9 @@ class Menu extends StatelessWidget {
         ],
       ),
       child: InkWell(
-        onTap: (){},
+        onTap: () {
+          context.pushNamed(route, params: {'tab': '0'});
+        },
         child: Column(
           children: [
             const SizedBox(

@@ -4,7 +4,6 @@ import 'package:mypeltar/screens/tabs/menu1.dart';
 import 'package:mypeltar/screens/tabs/menu2.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class Home extends StatefulWidget {
   final int currentTab;
   const Home({Key? key, required this.currentTab}) : super(key: key);
@@ -24,37 +23,37 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: pages,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-
-        currentIndex: _selectedIndex,
-        selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
-        onTap: (int index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-          saveCurrentIndex();
-        },
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.menu_book),
-            label: 'Menu 1',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-      )
-    );
+        body: IndexedStack(
+          index: _selectedIndex,
+          children: pages,
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _selectedIndex,
+          selectedItemColor:
+              Theme.of(context).textSelectionTheme.selectionColor,
+          onTap: (int index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+            saveCurrentIndex();
+          },
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.menu_book),
+              label: 'Menu 1',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Profile',
+            ),
+          ],
+        ));
   }
+
   void saveCurrentIndex() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setInt(prefSelectedIndexKey, _selectedIndex);

@@ -4,8 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mypeltar/components/dashboard_profile.dart';
 import 'package:mypeltar/components/menu.dart';
 
-import '../../components/search.dart';
-
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
   @override
@@ -35,9 +33,21 @@ class _DashboardPageState extends State<DashboardPage> {
             ],
           ),
           const SizedBox(
-            height: 100,
+            height: 50,
           ),
-          SearchBar(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              Menu(
+                  image: 'assets/images/maintenance.png',
+                  route: 'assets',
+                  title: 'Assets'),
+              Menu(
+                  image: 'assets/images/maintenance.png',
+                  route: '/inspection',
+                  title: 'Inscpection')
+            ],
+          ),
           const SizedBox(
             height: 40,
           ),
@@ -58,22 +68,7 @@ class _DashboardPageState extends State<DashboardPage> {
               ],
             ),
           ),
-          const SizedBox(
-            height: 60,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Menu(
-                  image: 'assets/images/maintenance.png',
-                  route: '/route',
-                  title: 'Title'),
-              Menu(
-                  image: 'assets/images/maintenance.png',
-                  route: '/route',
-                  title: 'Title')
-            ],
-          )
+
         ],
       ),
     );

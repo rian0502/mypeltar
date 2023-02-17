@@ -12,12 +12,13 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  int height = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Log in',
+          'Log In',
           style: GoogleFonts.poppins(
               fontSize: 25, fontWeight: FontWeight.w700, color: Colors.black),
         ),
