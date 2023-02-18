@@ -41,7 +41,8 @@ class _SearchBarState extends State<SearchBar> {
                   ),
                 ),
               ),
-              IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+              IconButton(
+                  onPressed: () {}, icon: const Icon(Icons.chevron_right)),
               IconButton(
                   onPressed: () {
                     context.goNamed('scan', params: {'tab': '0'});

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../components/asset_tile.dart';
+import '../components/search.dart';
 
 class AssetsScreen extends StatefulWidget {
   final int currentTab;
@@ -12,18 +14,34 @@ class AssetsScreen extends StatefulWidget {
 class _AssetsScreenState extends State<AssetsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          decoration: const BoxDecoration(
-              color: Color(0xFF00337C),
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(70)),
-          ),
-          child: Column(
-
-          ),
-        )
-      ],
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.only(left: 16, right: 16),
+        child: ListView(
+          children: const [
+            SizedBox(
+              height: 20,
+            ),
+            Center(
+              child: Text(
+                'Asset Inventory',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            SearchBar(),
+            SizedBox(
+              height: 50,
+            ),
+            Expanded(child: AssetTile()),
+          ],
+        ),
+      ),
     );
   }
 }
