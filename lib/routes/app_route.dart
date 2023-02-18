@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mypeltar/screens/inspection_report_screen.dart';
 import 'package:mypeltar/screens/scanner_screens.dart';
 import '../screens/about_screen.dart';
 import '../screens/assets_screen.dart';
@@ -17,6 +18,10 @@ class AppRoute {
           path: '/splash',
           builder: (context, state) => const SplashScreen(),
         ),
+        GoRoute(
+            path: '/view',
+            name: 'view',
+            builder: (context, state) => const InspectionReport()),
         GoRoute(
           path: '/login',
           builder: (context, state) => const LoginScreen(),
