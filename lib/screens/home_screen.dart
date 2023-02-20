@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mypeltar/screens/tabs/dashboard.dart';
 import 'package:mypeltar/screens/tabs/menu1.dart';
-import 'package:mypeltar/screens/tabs/menu2.dart';
+import 'package:mypeltar/screens/tabs/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
@@ -18,7 +18,7 @@ class _HomeState extends State<Home> {
   static List<Widget> pages = <Widget>[
     const DashboardPage(),
     const Menu1(),
-    const Menu2(),
+    const Profile(),
   ];
   @override
   Widget build(BuildContext context) {

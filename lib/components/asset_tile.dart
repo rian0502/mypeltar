@@ -7,15 +7,6 @@ class AssetTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      child: ListTile(
-        leading: CircleAvatar(
-          radius: 30,
-          backgroundImage: AssetImage('assets/images/dumylogo.png'),
-        ),
-        title: Text('Asset Name'),
-        subtitle: Text('Asset Description'),
-        trailing: Icon(Icons.chevron_right),
-      ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -27,6 +18,15 @@ class AssetTile extends StatelessWidget {
             offset: const Offset(0, 9), // changes position of shadow
           ),
         ],
+      ),
+      child: const ListTile(
+        leading: CircleAvatar(
+          radius: 30,
+          backgroundImage: AssetImage('assets/images/dumylogo.jpg'),
+        ),
+        title: Text('Asset Name'),
+        subtitle: Text('Asset Description'),
+        trailing: Icon(Icons.chevron_right),
       ),
     );
   }

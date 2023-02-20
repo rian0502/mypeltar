@@ -38,7 +38,7 @@ class _AssetsScreenState extends State<AssetsScreen> {
             SizedBox(
               height: 50,
             ),
-            Expanded(child: AssetTile()),
+           AssetTile(),
           ],
         ),
       ),
