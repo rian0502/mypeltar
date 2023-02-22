@@ -43,8 +43,8 @@ class _HomeState extends State<Home> {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.menu_book),
-              label: 'Menu 1',
+              icon: Icon(Icons.notification_important),
+              label: 'Notfications',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),

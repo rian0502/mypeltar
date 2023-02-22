@@ -16,164 +16,188 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Log In',
-          style: GoogleFonts.poppins(
-              fontSize: 25, fontWeight: FontWeight.w700, color: Colors.black),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 1,
-      ),
       body: Consumer<LoginState>(
         builder: (context, value, child) {
-          return Column(
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                      child: Text(
-                    'Selamat Datang',
-                    style: GoogleFonts.poppins(
-                        fontSize: 30, fontWeight: FontWeight.w700),
-                  ))
-                ],
-              ),
-              Row(
-                children: [
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                    child: Text(
-                      'Silahkan masuk untuk melanjutkan',
-                      style: GoogleFonts.poppins(
-                          fontSize: 17, fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 80,
-              ),
-              Expanded(
-                  child: Container(
-                decoration: const BoxDecoration(
-                    color: Color(0xFF00337C),
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(55),
-                        topRight: Radius.circular(55))),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: ListView(
+          return Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+              begin: Alignment.bottomRight,
+              colors: [
+                const Color(0xFF134A6E),
+                const Color(0xFF0093AD).withOpacity(0.3),
+              ],
+            )),
+            child: ListView(
+              children: [
+                SizedBox(
+                  height: 120,
+                ),
+                SizedBox(
+                  height: 80,
+                  child: Image.asset('assets/images/logo.png'),
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(height: 60),
-                      Column(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Row(
-                            children: [
-                              Text(
-                                'Email',
-                                style: GoogleFonts.poppins(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Color(0xFF00337C),
-                                      blurRadius: 20,
-                                      offset: Offset(0, 10))
-                                ]),
-                            child: const TextField(
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  prefixIcon: Icon(Icons.mail),
-                                  hintText: 'Email'),
+                          Text(
+                            'Log In',
+                            style: GoogleFonts.poppins(
+                              fontSize: 30,
+                              color: Color(0xFF134A6E),
+                              fontWeight: FontWeight.bold,
                             ),
                           )
                         ],
                       ),
-                      const SizedBox(
-                        height: 50,
-                      ),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            'Password',
+                            'Log In with email and password\nto use your account',
                             style: GoogleFonts.poppins(
-                              color: Colors.white,
-                              fontSize: 15,
+                              fontSize: 20,
+                              color: Color(0xFF0093AD),
+                              fontWeight: FontWeight.w400,
                             ),
-                          ),
+                          )
                         ],
+                      ),
+                      //input email
+                      const SizedBox(
+                        height: 30,
                       ),
                       Container(
                         decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Color(0xFF00337C),
-                                  blurRadius: 20,
-                                  offset: Offset(0, 10))
-                            ]),
-                        child: const TextField(
-                          obscureText: true,
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              spreadRadius: 3,
+                              blurRadius: 5,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: TextField(
+                          controller: value.email,
                           decoration: InputDecoration(
-                              border: InputBorder.none,
-                              prefixIcon: Icon(Icons.lock),
-                              suffixIcon: Icon(Icons.visibility),
-                              hintText: 'Password'),
+                            border: InputBorder.none,
+                            prefixIcon: const Icon(
+                              Icons.email,
+                              color: Color(0xFF134A6E),
+                            ),
+                            hintText: 'Email',
+                            hintStyle: GoogleFonts.poppins(
+                              fontSize: 20,
+                              color: Color(0xFF134A6E),
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
                         ),
                       ),
                       const SizedBox(
-                        height: 70,
+                        height: 30,
                       ),
-                      //button
                       Container(
-                        height: 45,
-                        margin: const EdgeInsets.symmetric(horizontal: 60),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
-                            boxShadow: const [
-                              BoxShadow(
-                                  color: Color(0xFF00337C),
-                                  blurRadius: 200,
-                                  offset: Offset(0, 10))
-                            ]),
-                        child: InkWell(
-                          onTap: () {
-                            context.go('/home');
-                          },
-                          child: const Center(
-                            child: Text(
-                              'Login',
-                              style: TextStyle(
-                                  color: Color(0xFF00337C),
-                                  fontWeight: FontWeight.bold),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              spreadRadius: 3,
+                              blurRadius: 5,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: TextField(
+                          obscureText: value.passwordVisible,
+                          controller: value.password,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            prefixIcon: const Icon(
+                              Icons.lock,
+                              color: Color(0xFF134A6E),
+                            ),
+                            suffixIcon: value.passwordVisible == true
+                                ? IconButton(
+                                    icon: const Icon(
+                                      Icons.visibility,
+                                      color: Color(0xFF134A6E),
+                                    ),
+                                    onPressed: () {
+                                      value.togglePasswordVisibility();
+                                    },
+                                  )
+                                : IconButton(
+                                    icon: const Icon(
+                                      Icons.visibility_off,
+                                      color: Color(0xFF134A6E),
+                                    ),
+                                    onPressed: () {
+                                      value.togglePasswordVisibility();
+                                    },
+                                  ),
+                            hintText: 'Password',
+                            hintStyle: GoogleFonts.poppins(
+                              fontSize: 20,
+                              color: const Color(0xFF134A6E),
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 60,
+                      ),
+                      Container(
+                        height: 50,
+                        width: 200,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: const Color(0xFF134A6E),
+                        ),
+                        child: TextButton(
+                          onPressed: () {
+                            value.toggleLoadLogin();
+                            Future.delayed(const Duration(seconds: 2), () {
+                              value.toggleLoadLogin();
+                              context.go('/home');
+                            });
+                          },
+                          child: value.loadLogin == true
+                              ? const SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                  ),
+                                )
+                              : Text(
+                                  'Log In',
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
                         ),
                       ),
                     ],
                   ),
-                ),
-              )),
-            ],
+                )
+              ],
+            ),
           );
         },
       ),

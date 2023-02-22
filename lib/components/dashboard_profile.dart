@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class DashboardProfile extends StatelessWidget {
@@ -7,32 +8,33 @@ class DashboardProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         const CircleAvatar(
-          radius: 30,
-          backgroundImage: AssetImage('assets/images/man.png'),
+          radius: 35,
+          backgroundImage: AssetImage('assets/images/avatar.png'),
         ),
         const SizedBox(
-          width: 40,
+          width: 30,
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children:  [
             Text(
-              'John Doe',
-              style: TextStyle(
+              'Aldi Ersalado',
+              style: GoogleFonts.poppins(
                 fontSize: 20,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
               ),
             ),
-            SizedBox(
-              height: 5,
-            ),
+
             Text(
-              'Admin',
-              style: TextStyle(
+              'IT Work Unit',
+              style: GoogleFonts.poppins(
                 fontSize: 15,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
               ),
             ),
           ],
