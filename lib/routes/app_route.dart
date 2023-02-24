@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mypeltar/screens/inspection_report_screen.dart';
 import 'package:mypeltar/screens/scanner_screens.dart';
+import 'package:mypeltar/state_management/app_state.dart';
 import '../screens/about_screen.dart';
 import '../screens/assets_screen.dart';
 import '../screens/home_screen.dart';
@@ -10,8 +11,12 @@ import '../screens/notification_screen.dart';
 import '../screens/splash_screen.dart';
 
 class AppRoute {
+  final AppState? appState;
+  AppRoute(this.appState);
+
   late final router = GoRouter(
       debugLogDiagnostics: true,
+      refreshListenable: appState,
       initialLocation: '/splash',
       routes: [
         GoRoute(
@@ -78,6 +83,9 @@ class AppRoute {
         ),
       ],
       redirect: (context, state) {
+        if(state.subloc == '/login'){
+          return appState!.isLogin ? '/home' : '/login';
+        }
         return null;
       });
 }

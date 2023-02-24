@@ -3,7 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 
 class DashboardProfile extends StatelessWidget {
-  const DashboardProfile({Key? key}) : super(key: key);
+  final String? name;
+  final String? email;
+  const DashboardProfile({Key? key, this.name, this.email}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class DashboardProfile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children:  [
             Text(
-              'Aldi Ersalado',
+              name ?? '-',
               style: GoogleFonts.poppins(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -30,7 +32,7 @@ class DashboardProfile extends StatelessWidget {
             ),
 
             Text(
-              'IT Work Unit',
+              email ?? '-',
               style: GoogleFonts.poppins(
                 fontSize: 15,
                 fontWeight: FontWeight.w500,

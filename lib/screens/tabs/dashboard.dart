@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mypeltar/components/dashboard_profile.dart';
 import 'package:mypeltar/components/menu.dart';
-import 'package:mypeltar/screens/tabs/profile.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
@@ -32,11 +31,23 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
-                SizedBox(
+              children: [
+                const SizedBox(
                   width: 30,
                 ),
-                DashboardProfile(),
+                FutureBuilder(
+                    future: _getUserName(),
+                    builder:
+                        (context, AsyncSnapshot<Map<String, String>> snapshot) {
+                      if (snapshot.hasData) {
+                        return DashboardProfile(
+                          name: snapshot.data!['name'],
+                          email: snapshot.data!['email'],
+                        );
+                      } else {
+                        return const CircularProgressIndicator();
+                      }
+                    })
               ],
             ),
             const SizedBox(
@@ -94,5 +105,12 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
           ],
         ));
+  }
+
+  Future<Map<String, String>> _getUserName() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? name = prefs.getString('name');
+    final String? email = prefs.getString('email');
+    return {'name': name!, 'email': email!};
   }
 }

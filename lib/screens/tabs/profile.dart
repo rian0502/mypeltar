@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -15,7 +16,13 @@ class _ProfileState extends State<Profile> {
           Container(
             height: 200,
             decoration: const BoxDecoration(
-              color: Color(0xFF00337C),
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xFF134A6E),
+                  Color(0xFF0093AD),
+                ],
+                begin: Alignment.topLeft,
+              ),
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(70),
                 bottomRight: Radius.circular(70),
@@ -40,7 +47,7 @@ class _ProfileState extends State<Profile> {
                     top: 140,
                     child: CircleAvatar(
                       radius: 50,
-                      backgroundImage: AssetImage('assets/images/man.png'),
+                      backgroundImage: AssetImage('assets/images/avatar.png'),
                     )),
               ],
             ),
@@ -52,43 +59,46 @@ class _ProfileState extends State<Profile> {
             padding: const EdgeInsets.only(left: 16, right: 16),
             child: Column(
               children: [
-                TextFormField(
-                  readOnly: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Nama',
-                    border: OutlineInputBorder(),
+                Container(
+                  height: 100,
+                  width: 300,
+                  padding: const EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 20,
+                        offset: Offset(0, 10),
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  readOnly: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    border: OutlineInputBorder(),
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Aldi Ersalado',
+                          style: GoogleFonts.poppins(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          'aldiersalado@bukitasammail.com',
+                          style: GoogleFonts.poppins(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  readOnly: true,
-                  decoration: const InputDecoration(
-                    labelText: 'No. Telp',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  readOnly: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Alamat',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
+                )
               ],
             ),
           ),

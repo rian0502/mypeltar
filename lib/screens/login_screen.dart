@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mypeltar/state_management/login_state.dart';
+import 'package:mypeltar/state_management/app_state.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -16,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer<LoginState>(
+      body: Consumer<AppState>(
         builder: (context, value, child) {
           return Container(
             decoration: BoxDecoration(
@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
             )),
             child: ListView(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 120,
                 ),
                 SizedBox(
@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             'Log In',
                             style: GoogleFonts.poppins(
                               fontSize: 30,
-                              color: Color(0xFF134A6E),
+                              color: const Color(0xFF134A6E),
                               fontWeight: FontWeight.bold,
                             ),
                           )
@@ -64,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             'Log In with email and password\nto use your account',
                             style: GoogleFonts.poppins(
                               fontSize: 20,
-                              color: Color(0xFF0093AD),
+                              color: const Color(0xFF0093AD),
                               fontWeight: FontWeight.w400,
                             ),
                           )
@@ -92,13 +92,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             prefixIcon: const Icon(
-                              Icons.email,
+                              Icons.person,
                               color: Color(0xFF134A6E),
                             ),
-                            hintText: 'Email',
+                            hintText: 'Username',
                             hintStyle: GoogleFonts.poppins(
                               fontSize: 20,
-                              color: Color(0xFF134A6E),
+                              color: const Color(0xFF134A6E),
                               fontWeight: FontWeight.w400,
                             ),
                           ),
@@ -169,11 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         child: TextButton(
                           onPressed: () {
-                            value.toggleLoadLogin();
-                            Future.delayed(const Duration(seconds: 2), () {
-                              value.toggleLoadLogin();
-                              context.go('/home');
-                            });
+                            value.login(context);
                           },
                           child: value.loadLogin == true
                               ? const SizedBox(

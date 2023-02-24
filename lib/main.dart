@@ -7,10 +7,12 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   final SharedPreferences sharedPreferences =
       await SharedPreferences.getInstance();
   final appStateManager = AppState(sharedPreferences);
+  appStateManager.initializeApp();
   runApp(MyPeltar(
     appStateManager: appStateManager,
   ));
@@ -25,13 +27,13 @@ class MyPeltar extends StatefulWidget {
 }
 
 class _MyPeltarState extends State<MyPeltar> {
-  final AppRoute _appRoute = AppRoute();
+  late final AppRoute _appRoute = AppRoute(widget.appStateManager);
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider(create:(context) => widget.appStateManager),
-          ChangeNotifierProvider(create:(context) => LoginState())
+          ChangeNotifierProvider(create: (context) => widget.appStateManager),
+          ChangeNotifierProvider(create: (context) => LoginState())
         ],
         child: MaterialApp.router(
           theme: MyPeltarTheme.light(),
