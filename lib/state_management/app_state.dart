@@ -6,8 +6,9 @@ import '../services/auth_services.dart';
 
 class TabMenu {
   static const int dashboard = 0;
-  static const int menu1 = 1;
-  static const int menu2 = 2;
+  static const int activity = 1;
+  static const int setting = 2;
+  static const int profile = 3;
 }
 
 class AppState extends ChangeNotifier {
@@ -17,7 +18,7 @@ class AppState extends ChangeNotifier {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
   bool _loadLogin = false;
-  bool _passwordVisible = false;
+  bool _passwordVisible = true;
 
   TextEditingController get email => _email;
   TextEditingController get password => _password;
@@ -36,43 +37,65 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
-
   void login(BuildContext context) async {
-    toggleLoadLogin();
-    AuthServices.loginAccess(_email.text, password.text).then((value) => {
-          toggleLoadLogin(),
-          if (value.status == 'success')
-            {
-              _isLogin = true,
-              _sharedPreferences.setBool('isLogin', true),
-              _sharedPreferences.setString(
-                  'token', value.authorisation!.token!),
-              _sharedPreferences.setString('name', value.user!.name!),
-              _sharedPreferences.setString('email', value.user!.email!),
-              _sharedPreferences.setString('guid', value.user!.guid!),
-              _sharedPreferences.setInt('id', value.user!.id!),
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Berhasil Login'),
-                  backgroundColor: Colors.green,
-                ),
-              ),
-              context.go('/home'),
-            }
-          else
-            {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Gagal Login'),
-                  backgroundColor: Colors.green,
-                ),
-              )
-            }
-        });
+    if (_email.text.isEmpty || _password.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Email dan Password tidak boleh kosong'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    } else {
+      toggleLoadLogin();
+      AuthServices.loginAccess(_email.text, password.text).then((value) => {
+            if (value.status == 'success')
+              {
+                _isLogin = true,
+                _sharedPreferences.setBool('isLogin', true),
+                _sharedPreferences.setBool('isLogin', true),
+                _sharedPreferences.setString(
+                    'token', value.authorisation!.token!),
+                _sharedPreferences.setString('nama', value.user!.nama!),
+                _sharedPreferences.setString('email', value.user!.email!),
+                _sharedPreferences.setString('username', value.user!.username!),
+                _sharedPreferences.setString('role', value.user!.role!),
+                _sharedPreferences.setString('satker', value.user!.satker!),
+                _sharedPreferences.setString(
+                    'subsatker', value.user!.subSatker!),
+                toggleLoadLogin(),
+                notifyListeners(),
+                GoRouter.of(context).go('/dashboard'),
+              }
+            else
+              {
+                toggleLoadLogin(),
+                notifyListeners(),
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Username dan Password Salah'),
+                    backgroundColor: Colors.deepPurple,
+                  ),
+                )
+              }
+          });
+    }
   }
+  Future<void> logout(BuildContext context) async {
+    _isLogin = false;
+    _sharedPreferences.setBool('isLogin', false);
+    _sharedPreferences.remove('token');
+    _sharedPreferences.remove('nama');
+    _sharedPreferences.remove('email');
+    _sharedPreferences.remove('username');
+    _sharedPreferences.remove('role');
+    _sharedPreferences.remove('satker');
+    _sharedPreferences.remove('subsatker');
+    notifyListeners();
+    GoRouter.of(context).go('/login');
+  }
+
   Future<void> initializeApp() async {
     print('status login: ${_sharedPreferences.getBool('isLogin')}');
     _isLogin = _sharedPreferences.getBool('isLogin') ?? false;
   }
-
 }

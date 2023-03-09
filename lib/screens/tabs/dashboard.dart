@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mypeltar/components/dashboard_profile.dart';
 import 'package:mypeltar/components/menu.dart';
+import 'package:mypeltar/state_management/app_state.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -90,15 +92,23 @@ class _DashboardPageState extends State<DashboardPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: const [
                         Menu(
-                            image: 'assets/images/cube.png',
-                            route: 'assets',
-                            title: 'Assets'),
+                            image: 'assets/images/maintenance.png',
+                            route: 'maintenance',
+                            title: 'Maintenance'),
                         Menu(
                             image: 'assets/images/maintenance.png',
-                            route: 'assets',
-                            title: 'Maintenance'),
+                            route: 'finance',
+                            title: 'Finance'),
+                        Menu(
+                            image: 'assets/images/maintenance.png',
+                            route: 'finance',
+                            title: 'Public Service'),
                       ],
-                    )
+                    ),
+                    ElevatedButton(
+                        onPressed: () {
+                          Provider.of<AppState>(context, listen: false).logout(context);
+                        }, child: const Text('Logout')),
                   ],
                 ),
               ),
@@ -109,8 +119,8 @@ class _DashboardPageState extends State<DashboardPage> {
 
   Future<Map<String, String>> _getUserName() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String? name = prefs.getString('name');
-    final String? email = prefs.getString('email');
+    final String? name = prefs.getString('nama');
+    final String? email = prefs.getString('subsatker');
     return {'name': name!, 'email': email!};
   }
 }

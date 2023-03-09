@@ -33,10 +33,12 @@ class LoginState extends ChangeNotifier{
       if(value.status == 'success'){
         _sharedPreferences.setBool('isLogin', true),
         _sharedPreferences.setString('token', value.authorisation!.token!),
-        _sharedPreferences.setString('name', value.user!.name!),
+        _sharedPreferences.setString('nama', value.user!.nama!),
         _sharedPreferences.setString('email', value.user!.email!),
-        _sharedPreferences.setString('guid', value.user!.guid!),
-        _sharedPreferences.setInt('id', value.user!.id!),
+        _sharedPreferences.setString('username', value.user!.username!),
+        _sharedPreferences.setString('role', value.user!.role!),
+        _sharedPreferences.setString('satker', value.user!.satker!),
+        _sharedPreferences.setString('subsatker', value.user!.subSatker!),
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Berhasil Login'),

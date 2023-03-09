@@ -1,4 +1,6 @@
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mypeltar/screens/tabs/dashboard.dart';
 import 'package:mypeltar/screens/tabs/menu1.dart';
 import 'package:mypeltar/screens/tabs/profile.dart';
@@ -20,38 +22,48 @@ class _HomeState extends State<Home> {
     const Menu1(),
     const Profile(),
   ];
+  static var icons = [
+    Icons.home_outlined,
+    Icons.task,
+    Icons.settings,
+    Icons.person,
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: IndexedStack(
-          index: _selectedIndex,
-          children: pages,
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          selectedItemColor:
-              Theme.of(context).textSelectionTheme.selectionColor,
-          onTap: (int index) {
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: pages,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.pushNamed('scan',params: {'tab': '0'});
+        },
+        child: const Icon(Icons.document_scanner),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: AnimatedBottomNavigationBar(
+          icons: icons,
+          inactiveColor: Colors.grey,
+          activeColor: Color(0xFF00337C),
+          backgroundColor: Colors.white,
+          gapLocation: GapLocation.center,
+          leftCornerRadius: 15,
+          rightCornerRadius: 15,
+          shadow: const BoxShadow(
+            color: Colors.black,
+            blurRadius: 2,
+            spreadRadius: 3,
+          ),
+          notchSmoothness: NotchSmoothness.verySmoothEdge,
+          activeIndex: _selectedIndex,
+          onTap: (index) {
             setState(() {
               _selectedIndex = index;
             });
-            saveCurrentIndex();
           },
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.notification_important),
-              label: 'Notfications',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-            ),
-          ],
-        ));
+      ),
+    );
   }
 
   void saveCurrentIndex() async {

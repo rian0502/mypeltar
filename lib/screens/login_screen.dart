@@ -171,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             value.login(context);
                           },
-                          child: value.loadLogin == true
+                          child: value.loadLogin
                               ? const SizedBox(
                                   height: 20,
                                   width: 20,

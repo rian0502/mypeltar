@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import '../models/login.dart';
 
 class AuthServices {
-  static String url = 'http://10.0.2.2:8000/api/';
+  static String url = 'http://10.0.2.2:8000/api/v1/auth/';
 
   static Future<Login> loginAccess(String username, String password) async {
     try{
@@ -13,8 +13,11 @@ class AuthServices {
         'username': username,
         'password': password
       });
-
-      return Login.fromJson(response.data);
+      if (response.statusCode == 200) {
+        return Login.fromJson(response.data);
+      } else {
+        return Login();
+      }
     } on DioError catch (e) {
       print(e);
       return Login();

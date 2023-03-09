@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mypeltar/screens/inspection_report_screen.dart';
+import 'package:mypeltar/screens/maintenance_screen.dart';
 import 'package:mypeltar/screens/scanner_screens.dart';
 import 'package:mypeltar/state_management/app_state.dart';
 import '../screens/about_screen.dart';
-import '../screens/assets_screen.dart';
 import '../screens/home_screen.dart';
 import '../screens/login_screen.dart';
 import '../screens/notification_screen.dart';
@@ -56,19 +56,13 @@ class AppRoute {
                   return const ScannerScreen();
                 }),
             GoRoute(
-                path: 'assets',
-                name: 'assets',
-                builder: (context, state) {
-                  final tab = int.tryParse(state.params['tab'] ?? '') ?? 0;
-                  return AssetsScreen(
-                    key: state.pageKey,
-                    currentTab: tab,
-                  );
-                }),
-            GoRoute(
                 path: 'inspection',
-                name: '/inspection',
+                name: 'inspection',
                 builder: (context, state) => const Placeholder()),
+            GoRoute(
+                path: 'maintenance',
+                name: 'maintenance',
+                builder: (context, state) => const MaintenanceScreen()),
             GoRoute(
                 path: 'about',
                 name: '/about',

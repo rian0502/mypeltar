@@ -29,7 +29,6 @@ class _SearchBarState extends State<SearchBar> {
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
-              const Icon(Icons.search),
               const SizedBox(
                 width: 10,
               ),
@@ -41,8 +40,15 @@ class _SearchBarState extends State<SearchBar> {
                   ),
                 ),
               ),
-              IconButton(
-                  onPressed: () {}, icon: const Icon(Icons.chevron_right)),
+              Container(
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Center(
+                    child: IconButton(
+                        onPressed: () {}, icon: const Icon(Icons.search)),
+                  )),
               IconButton(
                   onPressed: () {
                     context.goNamed('scan', params: {'tab': '0'});

@@ -1,6 +1,9 @@
+
+
 import 'dart:convert';
 
 Login loginFromJson(String str) => Login.fromJson(json.decode(str));
+
 
 class Login {
   String? status;
@@ -31,46 +34,38 @@ class Login {
 }
 
 class User {
-  int? id;
-  String? guid;
-  String? domain;
-  String? name;
+  String? nama;
   String? email;
-  String? emailVerifiedAt;
-  String? createdAt;
-  String? updatedAt;
+  String? username;
+  String? role;
+  String? satker;
+  String? subSatker;
 
   User(
-      {this.id,
-        this.guid,
-        this.domain,
-        this.name,
+      {this.nama,
         this.email,
-        this.emailVerifiedAt,
-        this.createdAt,
-        this.updatedAt});
+        this.username,
+        this.role,
+        this.satker,
+        this.subSatker});
 
   User.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    guid = json['guid'];
-    domain = json['domain'];
-    name = json['name'];
-    email = json['email'];
-    emailVerifiedAt = json['email_verified_at'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+    nama = json['Nama'];
+    email = json['Email'];
+    username = json['Username'];
+    role = json['Role'];
+    satker = json['Satker'];
+    subSatker = json['SubSatker'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['guid'] = guid;
-    data['domain'] = domain;
-    data['name'] = name;
-    data['email'] = email;
-    data['email_verified_at'] = emailVerifiedAt;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['Nama'] = this.nama;
+    data['Email'] = this.email;
+    data['Username'] = this.username;
+    data['Role'] = this.role;
+    data['Satker'] = this.satker;
+    data['SubSatker'] = this.subSatker;
     return data;
   }
 }
@@ -87,9 +82,9 @@ class Authorisation {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['token'] = token;
-    data['type'] = type;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['token'] = this.token;
+    data['type'] = this.type;
     return data;
   }
 }
