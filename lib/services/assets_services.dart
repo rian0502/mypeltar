@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import '../models/assets.dart';
 
 
-
 class AssetsServices{
   static String url = 'http://10.0.2.2:8000/api/v1/asset/';
 
@@ -17,8 +16,7 @@ class AssetsServices{
       } else {
         return Assets();
       }
-    } on DioError catch (e) {
-      print(e);
+    } on DioError {
       return Assets();
     }
   }

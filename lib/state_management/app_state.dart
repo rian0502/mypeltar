@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../services/auth_services.dart';
 
 class TabMenu {
@@ -12,6 +11,7 @@ class TabMenu {
 }
 
 class AppState extends ChangeNotifier {
+
   AppState(this._sharedPreferences);
   bool _isLogin = false;
   late final SharedPreferences _sharedPreferences;
@@ -64,7 +64,7 @@ class AppState extends ChangeNotifier {
                     'subsatker', value.user!.subSatker!),
                 toggleLoadLogin(),
                 notifyListeners(),
-                GoRouter.of(context).go('/dashboard'),
+                context.go('/dashboard'),
               }
             else
               {
@@ -80,6 +80,7 @@ class AppState extends ChangeNotifier {
           });
     }
   }
+
   Future<void> logout(BuildContext context) async {
     _isLogin = false;
     _sharedPreferences.setBool('isLogin', false);
