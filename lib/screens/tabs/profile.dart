@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -8,6 +9,20 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  String? nama;
+  String? email;
+
+  @override
+  void initState() {
+    SharedPreferences.getInstance().then((value){
+      setState(() {
+        nama = value.getString('nama')!;
+        email = value.getString('email')!;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +94,7 @@ class _ProfileState extends State<Profile> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Aldi Ersalado',
+                          nama ?? '-',
                           style: GoogleFonts.poppins(
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
@@ -89,7 +104,7 @@ class _ProfileState extends State<Profile> {
                           height: 5,
                         ),
                         Text(
-                          'aldiersalado@bukitasammail.com',
+                          email ?? '-',
                           style: GoogleFonts.poppins(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,

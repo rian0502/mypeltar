@@ -35,6 +35,7 @@ class _MyPeltarState extends State<MyPeltar> {
           ChangeNotifierProvider(create: (context) => LoginState())
         ],
         child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
           theme: MyPeltarTheme.light(),
           title: 'My Peltar',
           routerDelegate: _appRoute.router.routerDelegate,

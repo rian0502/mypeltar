@@ -29,7 +29,7 @@ class Menu extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          context.pushNamed(route, params: {'tab': '0'});
+          context.goNamed(route, params: {'tab': '0'});
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
