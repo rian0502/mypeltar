@@ -103,48 +103,48 @@ class _MaintenanceScreenState extends State<MaintenanceScreen>
           height: 30,
         ),
         Center(
-          child: FutureBuilder<List<Categories>>(
-            future: DropdownServices.getAll(_token),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Container(
-                  height: 50,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(
-                      25.0,
+            child: FutureBuilder<List<Categories>>(
+          future: DropdownServices.getAll(_token),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Container(
+                height: 50,
+                width: MediaQuery.of(context).size.width * 0.9,
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(
+                    10.0,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      hint: const Text('Select Category'),
+                      value: _categories,
+                      onChanged: (String? value) {
+                        setState(() {
+                          _categories = value!;
+                        });
+                      },
+                      items: snapshot.data!
+                          .map(
+                              (Categories category) => DropdownMenuItem<String>(
+                                    value: category.kategori!,
+                                    child: Text(category.kategori!),
+                                  ))
+                          .toList(),
                     ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<String>(
-                        hint: const Text('Select Category'),
-                        value: _categories,
-                        onChanged: (String? value) {
-                          setState(() {
-                            _categories = value!;
-                          });
-                        },
-                        items: snapshot.data!
-                            .map((Categories category) => DropdownMenuItem<String>(
-                                  value: category.kategori!,
-                                  child: Text(category.kategori!),
-                                ))
-                            .toList(),
-                      ),
-                    ),
-                  ),
-                );
-              } else {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-            },
-          )
-        ),
+                ),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        )),
         const SizedBox(
           height: 20,
         ),

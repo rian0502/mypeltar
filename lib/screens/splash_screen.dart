@@ -11,15 +11,14 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
       context.go('/login');
     });
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,16 +27,27 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: 200,
-              width: 300,
-              child: Image.asset("assets/images/dumylogo.jpg"),
+              height: 150,
+              width: 150,
+              child: Image.asset("assets/images/logo.png"),
             ),
             Text(
-              'AKHLAK',
+              'Mypeltar',
               style: GoogleFonts.poppins(
                   fontSize: 30,
+                  color: const Color(0xFF134A6E),
+                  fontWeight: FontWeight.bold,
                   textStyle: MyPeltarTheme.lightTextTheme.headline3),
-            )
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text('We Care About Our Assets',
+                style: GoogleFonts.poppins(
+                  fontSize: 20,
+                  color: const Color(0xFF06C8FD),
+                  fontWeight: FontWeight.w500,
+                )),
           ],
         ),
       ),

@@ -105,10 +105,6 @@ class _DashboardPageState extends State<DashboardPage> {
                             title: 'Public Service'),
                       ],
                     ),
-                    ElevatedButton(
-                        onPressed: () {
-                          Provider.of<AppState>(context, listen: false).logout(context);
-                        }, child: const Text('Logout')),
                   ],
                 ),
               ),

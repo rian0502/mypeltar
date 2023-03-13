@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../state_management/app_state.dart';
 
 
 class SettingScreens extends StatelessWidget {
@@ -6,6 +8,13 @@ class SettingScreens extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: ElevatedButton(
+        onPressed: () {
+          Provider.of<AppState>(context, listen: false).logout(context);
+        },
+        child: const Text('Logout'),
+      ),
+    );
   }
 }

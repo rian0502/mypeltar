@@ -32,6 +32,14 @@ class AppRoute {
           builder: (context, state) => const LoginScreen(),
         ),
         GoRoute(
+          path: '/detail-asset',
+          name: '/detail-asset',
+          builder: (context, state) {
+            String? id = state.extra as String;
+            return  AboutScreen(id: id,);
+          },
+        ),
+        GoRoute(
           name: 'home',
           path: '/:tab',
           builder: (context, state) {
@@ -63,16 +71,6 @@ class AppRoute {
                 path: 'maintenance',
                 name: 'maintenance',
                 builder: (context, state) => const MaintenanceScreen()),
-            GoRoute(
-                path: 'about',
-                name: '/about',
-                builder: (context, state) {
-                  final tab = int.tryParse(state.params['tab'] ?? '') ?? 0;
-                  return AboutScreen(
-                    key: state.pageKey,
-                    currentTab: tab,
-                  );
-                }),
           ],
         ),
       ],
