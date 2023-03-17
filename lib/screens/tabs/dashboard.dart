@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mypeltar/components/dashboard_profile.dart';
 import 'package:mypeltar/components/menu.dart';
-import 'package:mypeltar/state_management/app_state.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../components/carousel_slidder.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class _DashboardPageState extends State<DashboardPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(
-              height: 90,
+              height: 50,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -69,6 +69,10 @@ class _DashboardPageState extends State<DashboardPage> {
                     const SizedBox(
                       height: 5,
                     ),
+                    MyCarouselSlidder(),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Row(
                       children: [
                         const SizedBox(
@@ -86,7 +90,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       ],
                     ),
                     const SizedBox(
-                      height: 30,
+                      height: 10,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
