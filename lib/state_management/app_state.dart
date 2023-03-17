@@ -26,7 +26,6 @@ class AppState extends ChangeNotifier {
   bool get loadLogin => _loadLogin;
   bool get passwordVisible => _passwordVisible;
   bool get isLogin => _isLogin;
-
   void togglePasswordVisibility() {
     _passwordVisible = !_passwordVisible;
     notifyListeners();
