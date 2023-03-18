@@ -9,7 +9,7 @@ class DashboardProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width - 70,
+      width: MediaQuery.of(context).size.width - 60,
       decoration: BoxDecoration(
         color: Colors.grey.withOpacity(0.5),
         borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -32,18 +32,24 @@ class DashboardProfile extends StatelessWidget {
               backgroundImage: AssetImage('assets/images/avatar.png'),
             ),
             const SizedBox(
-              width: 50,
+              width: 40,
             ),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    name ?? '-',
-                    style: GoogleFonts.poppins(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
+                  SizedBox(
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                        name ?? '-',
+                        maxLines: 1,
+                        style: GoogleFonts.poppins(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
                   Text(
