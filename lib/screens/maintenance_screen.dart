@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mypeltar/models/categories.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../models/locations.dart';
 import '../services/dropdown_service.dart';
 import 'list_assets.dart';
 
@@ -18,6 +19,7 @@ class _MaintenanceScreenState extends State<MaintenanceScreen>
   String _token = '';
   TabController? _tabController;
   String? _categories;
+  String? _locations;
   String? idCategories;
   @override
   void initState() {
@@ -149,8 +151,8 @@ class _MaintenanceScreenState extends State<MaintenanceScreen>
           height: 10,
         ),
         Center(
-            child: FutureBuilder<List<Categories>>(
-          future: DropdownServices.getAll(_token),
+            child: FutureBuilder<List<Locations>>(
+          future: DropdownServices.getAllLocation(_token),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return Container(
@@ -166,18 +168,18 @@ class _MaintenanceScreenState extends State<MaintenanceScreen>
                   padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<String>(
-                      hint: const Text('Select Category'),
-                      value: _categories,
+                      hint: const Text('Select Locations'),
+                      value: _locations,
                       onChanged: (String? value) {
                         setState(() {
-                          _categories = value!;
+                          _locations = value!;
                         });
                       },
                       items: snapshot.data!
                           .map(
-                              (Categories category) => DropdownMenuItem<String>(
-                                    value: category.kategori!,
-                                    child: Text(category.kategori!),
+                              (Locations locations) => DropdownMenuItem<String>(
+                                    value: locations.unit!,
+                                    child: Text(locations.unit!),
                                   ))
                           .toList(),
                     ),

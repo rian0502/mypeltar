@@ -94,19 +94,16 @@ class _DashboardPageState extends State<DashboardPage> {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const [
-                        Menu(
+                      children: [
+                        const Menu(
                             image: 'assets/images/maintenance.png',
                             route: 'maintenance',
                             title: 'Maintenance'),
-                        Menu(
+                        const Menu(
                             image: 'assets/images/maintenance.png',
                             route: 'finance',
                             title: 'Finance'),
-                        Menu(
-                            image: 'assets/images/maintenance.png',
-                            route: 'finance',
-                            title: 'Public Service'),
+                        _menuMore('assets/images/more.png', 'More')
                       ],
                     ),
                   ],
@@ -115,6 +112,101 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
           ],
         ));
+  }
+
+  Widget _menuMore(String image, String title) {
+    return Container(
+      height: 120,
+      width: 120,
+      decoration: BoxDecoration(
+        color: const Color(0xFF134A6E),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF134A6E).withOpacity(0.3),
+            spreadRadius: 1,
+            blurRadius: 3,
+            offset: const Offset(0, 5), // changes position of shadow
+          ),
+        ],
+      ),
+      child: InkWell(
+        onTap: () {
+          showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              builder: (BuildContext context) {
+                return Container(
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40),
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Menu',
+                        style: GoogleFonts.poppins(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: const Color(0xFF0093AD),
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: const [
+                          Menu(
+                              image: 'assets/images/maintenance.png',
+                              route: 'maintenance',
+                              title: 'Maintenance'),
+                          Menu(
+                              image: 'assets/images/maintenance.png',
+                              route: 'finance',
+                              title: 'Finance'),
+                        ],
+                      ),
+
+                    ],
+                  ),
+                );
+              });
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 10,
+            ),
+            Image.asset(
+              image,
+              height: 50,
+              width: 50,
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Text(
+              title,
+              style: GoogleFonts.poppins(
+                fontSize: 13,
+                fontWeight: FontWeight.w400,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Future<Map<String, String>> _getUserName() async {
