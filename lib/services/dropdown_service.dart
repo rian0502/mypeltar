@@ -13,7 +13,7 @@ class DropdownServices {
       dio.options.headers['Authorization'] = 'Bearer $token';
       var response = await dio.get('${_url}category/getall');
       if (response.statusCode == 200) {
-        return (response.data as List)
+        return (response.data['data'] as List)
             .map((e) => Categories.fromJson(e))
             .toList();
       } else {
@@ -31,7 +31,7 @@ class DropdownServices {
       dio.options.headers['Authorization'] = 'Bearer $token';
       var response = await dio.get('${_url}location/getall');
       if (response.statusCode == 200) {
-        return (response.data as List)
+        return (response.data[0] as List)
             .map((e) => Locations.fromJson(e))
             .toList();
       } else {
