@@ -11,13 +11,17 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   String? nama;
   String? email;
+  String? satker;
+  String? subsatker;
 
   @override
   void initState() {
-    SharedPreferences.getInstance().then((value){
+    SharedPreferences.getInstance().then((value) {
       setState(() {
         nama = value.getString('nama')!;
         email = value.getString('email')!;
+        satker = value.getString('satker')!;
+        subsatker = value.getString('subsatker')!;
       });
     });
     super.initState();
@@ -113,6 +117,97 @@ class _ProfileState extends State<Profile> {
                       ],
                     ),
                   ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: 50,
+                  width: 300,
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 20,
+                        offset: Offset(0, 10),
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: Row(
+                      children: [
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        const Icon(Icons.location_on),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Text(
+                          satker ?? '-',
+                          style: GoogleFonts.poppins(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: 50,
+                  width: 300,
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 20,
+                        offset: Offset(0, 10),
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: Row(
+                      children: [
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        const Icon(Icons.location_on),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Text(
+                          subsatker ?? '-',
+                          style: GoogleFonts.poppins(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 40, top: 10),
+                      child: ElevatedButton(
+                          onPressed: () {}, child: const Text('Edit')),
+                    ),
+                  ],
                 )
               ],
             ),

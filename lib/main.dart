@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:mypeltar/mypeltar_theme.dart';
 import 'package:mypeltar/routes/app_route.dart';
-import 'package:mypeltar/services/dropdown_service.dart';
 import 'package:mypeltar/state_management/app_state.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
