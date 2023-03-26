@@ -20,6 +20,7 @@ class _AboutScreenState extends State<AboutScreen> {
     SharedPreferences.getInstance().then((value){
       setState(() {
         token = value.getString('token')!;
+        print('token: $token');
       });
     });
     super.initState();
@@ -28,7 +29,7 @@ class _AboutScreenState extends State<AboutScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-        future: AssetsServices.show(widget.id!, token), // <--- here
+        future: AssetsServices.show(widget.id!, token),
         builder: (BuildContext context, AsyncSnapshot<DetailAsset> snapshot) {
          if(snapshot.hasData){
            return Column(

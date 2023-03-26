@@ -13,7 +13,6 @@ class ScannerScreen extends StatefulWidget {
 }
 
 class _ScannerScreenState extends State<ScannerScreen> {
-
   Barcode? result;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
@@ -30,7 +29,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -70,8 +68,9 @@ class _ScannerScreenState extends State<ScannerScreen> {
         result = scanData;
       });
       if (result?.code != null) {
+        context.pushNamed('/detail-asset',
+            extra: '1');
         controller.pauseCamera();
-        context.pop();
       }
     });
     controller.pauseCamera();
