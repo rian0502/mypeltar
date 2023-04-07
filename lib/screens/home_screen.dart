@@ -39,31 +39,31 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.pushNamed('scan',params: {'tab': '0'});
+          context.pushNamed('scan', params: {'tab': '0'});
         },
         child: const Icon(Icons.document_scanner),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar(
-          icons: icons,
-          inactiveColor: Colors.grey,
-          activeColor: Color(0xFF00337C),
-          backgroundColor: Colors.white,
-          gapLocation: GapLocation.center,
-          leftCornerRadius: 15,
-          rightCornerRadius: 15,
-          shadow: const BoxShadow(
-            color: Colors.black,
-            blurRadius: 2,
-            spreadRadius: 3,
-          ),
-          notchSmoothness: NotchSmoothness.verySmoothEdge,
-          activeIndex: _selectedIndex,
-          onTap: (index) {
-            setState(() {
-              _selectedIndex = index;
-            });
-          },
+        icons: icons,
+        inactiveColor: Colors.grey,
+        activeColor: Color(0xFF00337C),
+        backgroundColor: Colors.white,
+        gapLocation: GapLocation.center,
+        leftCornerRadius: 15,
+        rightCornerRadius: 15,
+        shadow: const BoxShadow(
+          color: Colors.black,
+          blurRadius: 2,
+          spreadRadius: 3,
+        ),
+        notchSmoothness: NotchSmoothness.verySmoothEdge,
+        activeIndex: _selectedIndex,
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
       ),
     );
   }

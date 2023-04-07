@@ -29,7 +29,7 @@ class _MaintenanceScreenState extends State<MaintenanceScreen>
       });
     });
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -74,7 +74,7 @@ class _MaintenanceScreenState extends State<MaintenanceScreen>
         ),
         Container(
           height: 45,
-          width: 250,
+          width: 350,
           decoration: BoxDecoration(
             color: Colors.grey[300],
             borderRadius: BorderRadius.circular(
@@ -93,116 +93,33 @@ class _MaintenanceScreenState extends State<MaintenanceScreen>
             unselectedLabelColor: Colors.black,
             tabs: const [
               Tab(
-                text: 'Assets',
+                text: 'Report',
               ),
               Tab(
-                text: 'Inspection',
+                text: 'Proces',
               ),
+              Tab(
+                text: 'Maintained',
+              )
             ],
           ),
         ),
-        const SizedBox(
-          height: 30,
-        ),
-        Center(
-            child: FutureBuilder<List<Categories>>(
-          future: DropdownServices.getAll(_token),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Container(
-                height: 50,
-                width: MediaQuery.of(context).size.width * 0.9,
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(
-                    10.0,
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                      hint: const Text('Select Category'),
-                      value: _categories,
-                      onChanged: (String? value) {
-                        setState(() {
-                          _categories = value!;
-                        });
-                      },
-                      items: snapshot.data!
-                          .map(
-                              (Categories category) => DropdownMenuItem<String>(
-                                    value: category.kategori!,
-                                    child: Text(category.kategori!),
-                                  ))
-                          .toList(),
-                    ),
-                  ),
-                ),
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
-        )),
-        const SizedBox(
-          height: 10,
-        ),
-        Center(
-            child: FutureBuilder<List<Locations>>(
-          future: DropdownServices.getAllLocation(_token),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Container(
-                height: 50,
-                width: MediaQuery.of(context).size.width * 0.9,
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(
-                    10.0,
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton<String>(
-                      hint: const Text('Select Locations'),
-                      value: _locations,
-                      onChanged: (String? value) {
-                        setState(() {
-                          _locations = value!;
-                        });
-                      },
-                      items: snapshot.data!
-                          .map(
-                              (Locations locations) => DropdownMenuItem<String>(
-                                    value: locations.unit!,
-                                    child: Text(locations.unit!),
-                                  ))
-                          .toList(),
-                    ),
-                  ),
-                ),
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
-        )),
+
         const SizedBox(
           height: 20,
         ),
         Expanded(
           child: TabBarView(
             controller: _tabController!,
-            children: [
-              ListAssets(token: _token),
-              const Center(
+            children: const [
+              Center(
+                child: Text('Report'),
+              ),
+              Center(
                 child: Text('Inspection'),
+              ),
+              Center(
+                child: Text('Maintained'),
               ),
             ],
           ),

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mypeltar/components/dashboard_profile.dart';
 import 'package:mypeltar/components/menu.dart';
+import 'package:mypeltar/components/menuAsset.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../components/carousel_slidder.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -29,23 +28,40 @@ class _DashboardPageState extends State<DashboardPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(
-              height: 50,
+              height: 40,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 17, right: 17, bottom: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.asset('assets/images/logo.png', height: 80, width: 80),
+                  IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.notification_important,
+                        color: Colors.white,
+                      )),
+                ],
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const SizedBox(
-                  width: 30,
+                  width: 20,
                 ),
                 FutureBuilder(
                     future: _getUserName(),
                     builder:
                         (context, AsyncSnapshot<Map<String, String>> snapshot) {
                       if (snapshot.hasData) {
-                        return DashboardProfile(
-                          name: snapshot.data!['name'],
-                          email: snapshot.data!['email'],
-                        );
+                        return Text('Hello, ${snapshot.data!['name']!}!',
+                            style: GoogleFonts.poppins(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ));
                       } else {
                         return const CircularProgressIndicator();
                       }
@@ -53,14 +69,13 @@ class _DashboardPageState extends State<DashboardPage> {
               ],
             ),
             const SizedBox(
-              height: 30,
+              height: 10,
             ),
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
                     topRight: Radius.circular(40),
                   ),
                 ),
@@ -95,15 +110,25 @@ class _DashboardPageState extends State<DashboardPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        const Menu(
-                            image: 'assets/images/maintenance.png',
-                            route: 'maintenance',
-                            title: 'Maintenance'),
-                        const Menu(
-                            image: 'assets/images/maintenance.png',
-                            route: 'finance',
-                            title: 'Finance'),
-                        _menuMore('assets/images/more.png', 'More')
+                        const MenuAsset(
+                            image: 'assets/images/assets.png',
+                            route: 'assets',
+                            title: 'Assets'),
+                        Column(
+                          children: const [
+                            Menu(
+                                image: 'assets/images/inspection.png',
+                                route: 'inspection',
+                                title: 'Inspection'),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Menu(
+                                image: 'assets/images/maintenance.png',
+                                route: 'maintenance',
+                                title: 'Maintenance'),
+                          ],
+                        )
                       ],
                     ),
                   ],
@@ -112,101 +137,6 @@ class _DashboardPageState extends State<DashboardPage> {
             ),
           ],
         ));
-  }
-
-  Widget _menuMore(String image, String title) {
-    return Container(
-      height: 120,
-      width: 120,
-      decoration: BoxDecoration(
-        color: const Color(0xFF134A6E),
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF134A6E).withOpacity(0.3),
-            spreadRadius: 1,
-            blurRadius: 3,
-            offset: const Offset(0, 5), // changes position of shadow
-          ),
-        ],
-      ),
-      child: InkWell(
-        onTap: () {
-          showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              builder: (BuildContext context) {
-                return Container(
-                  height: MediaQuery.of(context).size.height * 0.8,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(40),
-                      topRight: Radius.circular(40),
-                    ),
-                  ),
-                  child: Column(
-                    children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Menu',
-                        style: GoogleFonts.poppins(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: const Color(0xFF0093AD),
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: const [
-                          Menu(
-                              image: 'assets/images/maintenance.png',
-                              route: 'maintenance',
-                              title: 'Maintenance'),
-                          Menu(
-                              image: 'assets/images/maintenance.png',
-                              route: 'finance',
-                              title: 'Finance'),
-                        ],
-                      ),
-
-                    ],
-                  ),
-                );
-              });
-        },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            Image.asset(
-              image,
-              height: 50,
-              width: 50,
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Text(
-              title,
-              style: GoogleFonts.poppins(
-                fontSize: 13,
-                fontWeight: FontWeight.w400,
-                color: Colors.white,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 
   Future<Map<String, String>> _getUserName() async {

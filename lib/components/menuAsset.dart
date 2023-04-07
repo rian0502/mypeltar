@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Menu extends StatelessWidget {
+class MenuAsset extends StatelessWidget {
   final String image;
   final String route;
   final String title;
-  const Menu(
+  const MenuAsset(
       {Key? key, required this.image, required this.route, required this.title})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70,
-      width: 180,
+      height: 180,
+      width: 120,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xFF134A6E),
         borderRadius: const BorderRadius.all(Radius.circular(20)),
         boxShadow: [
           BoxShadow(
@@ -31,7 +31,7 @@ class Menu extends StatelessWidget {
         onTap: () {
           context.goNamed(route, params: {'tab': '0'});
         },
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
@@ -40,14 +40,14 @@ class Menu extends StatelessWidget {
               width: 40,
             ),
             const SizedBox(
-              width: 15,
+              height: 15,
             ),
             Text(
               title,
               style: GoogleFonts.poppins(
                 fontSize: 15,
                 fontWeight: FontWeight.w700,
-                color: const Color(0xFF134A6E),
+                color: Colors.white,
               ),
             ),
           ],
