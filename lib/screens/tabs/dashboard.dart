@@ -56,7 +56,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     builder:
                         (context, AsyncSnapshot<Map<String, String>> snapshot) {
                       if (snapshot.hasData) {
-                        return Text('Hello, ${snapshot.data!['name']!}!',
+                        return Text('Hello, ${snapshot.data!['nama']!}!',
                             style: GoogleFonts.poppins(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
@@ -141,8 +141,9 @@ class _DashboardPageState extends State<DashboardPage> {
 
   Future<Map<String, String>> _getUserName() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String? name = prefs.getString('nama');
-    final String? email = prefs.getString('subsatker');
-    return {'name': name!, 'email': email!};
+    final String? nama = prefs.getString('nama');
+    return {
+      'nama': nama!,
+    };
   }
 }

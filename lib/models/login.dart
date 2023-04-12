@@ -1,8 +1,6 @@
-
 import 'dart:convert';
 
 Login loginFromJson(String str) => Login.fromJson(json.decode(str));
-
 
 class Login {
   String? status;
@@ -36,65 +34,61 @@ class User {
   String? nama;
   String? email;
   String? username;
-  Role? role;
+  List<String>? role;
+  Subsatker? subsatker;
   Satker? satker;
-  String? subsatker;
 
   User(
       {this.nama,
         this.email,
         this.username,
         this.role,
-        this.satker,
-        this.subsatker});
+        this.subsatker,
+        this.satker});
 
   User.fromJson(Map<String, dynamic> json) {
     nama = json['nama'];
     email = json['email'];
     username = json['username'];
-    role = json['role'] != null ? Role.fromJson(json['role']) : null;
+    role = json['role'].cast<String>();
+    subsatker = json['subsatker'] != null
+        ? new Subsatker.fromJson(json['subsatker'])
+        : null;
     satker =
-    json['satker'] != null ? Satker.fromJson(json['satker']) : null;
-    subsatker = json['subsatker'];
+    json['satker'] != null ? new Satker.fromJson(json['satker']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['nama'] = nama;
-    data['email'] = email;
-    data['username'] = username;
-    if (role != null) {
-      data['role'] = role!.toJson();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['nama'] = this.nama;
+    data['email'] = this.email;
+    data['username'] = this.username;
+    data['role'] = this.role;
+    if (this.subsatker != null) {
+      data['subsatker'] = this.subsatker!.toJson();
     }
-    if (satker != null) {
-      data['satker'] = satker!.toJson();
+    if (this.satker != null) {
+      data['satker'] = this.satker!.toJson();
     }
-    data['subsatker'] = subsatker;
     return data;
   }
 }
 
-class Role {
+class Subsatker {
   int? id;
-  String? role;
-  String? createdAt;
-  String? updatedAt;
+  String? subsatker;
 
-  Role({this.id, this.role, this.createdAt, this.updatedAt});
+  Subsatker({this.id, this.subsatker});
 
-  Role.fromJson(Map<String, dynamic> json) {
+  Subsatker.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    role = json['role'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+    subsatker = json['subsatker'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['role'] = this.role;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    data['subsatker'] = this.subsatker;
     return data;
   }
 }
@@ -102,24 +96,18 @@ class Role {
 class Satker {
   int? id;
   String? satker;
-  String? createdAt;
-  String? updatedAt;
 
-  Satker({this.id, this.satker, this.createdAt, this.updatedAt});
+  Satker({this.id, this.satker});
 
   Satker.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     satker = json['satker'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['satker'] = this.satker;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
     return data;
   }
 }

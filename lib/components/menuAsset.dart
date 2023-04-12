@@ -9,7 +9,6 @@ class MenuAsset extends StatelessWidget {
   const MenuAsset(
       {Key? key, required this.image, required this.route, required this.title})
       : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(

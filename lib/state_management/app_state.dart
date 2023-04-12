@@ -56,11 +56,10 @@ class AppState extends ChangeNotifier {
                 _sharedPreferences.setString('nama', value.user!.nama!),
                 _sharedPreferences.setString('email', value.user!.email!),
                 _sharedPreferences.setString('username', value.user!.username!),
-                _sharedPreferences.setString('role', value.user!.role!.role!),
+                _sharedPreferences.setString('role', value.user!.subsatker!.subsatker!),
                 _sharedPreferences.setString(
                     'satker', value.user!.satker!.satker!),
-                _sharedPreferences.setString(
-                    'subsatker', value.user!.subsatker!),
+
                 toggleLoadLogin(),
                 notifyListeners(),
                 context.go('/dashboard'),

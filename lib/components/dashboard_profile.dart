@@ -9,16 +9,16 @@ class DashboardProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width - 60,
-      decoration: BoxDecoration(
-        color: Colors.grey.withOpacity(0.5),
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
+      width: MediaQuery.of(context).size.width - 40,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(20)),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
             spreadRadius: 1,
-            blurRadius: 3,
-            offset: const Offset(0, 5), // changes position of shadow
+            color: Colors.grey,
+            blurRadius: 1,
+            offset: Offset(0, 1), // changes position of shadow
           ),
         ],
       ),
@@ -47,7 +47,7 @@ class DashboardProfile extends StatelessWidget {
                         style: GoogleFonts.poppins(
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
-                          color: Colors.white,
+                          color: const Color(0xff1E3A8A),
                         ),
                       ),
                     ),
@@ -57,7 +57,7 @@ class DashboardProfile extends StatelessWidget {
                     style: GoogleFonts.poppins(
                       fontSize: 15,
                       fontWeight: FontWeight.w500,
-                      color: Colors.white,
+                      color: const Color(0xff1E3A8A),
                     ),
                   ),
                 ],
