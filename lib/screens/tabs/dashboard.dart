@@ -31,7 +31,7 @@ class _DashboardPageState extends State<DashboardPage> {
               height: 40,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 17, right: 17, bottom: 25),
+              padding: const EdgeInsets.only(left: 17, right: 17, bottom: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

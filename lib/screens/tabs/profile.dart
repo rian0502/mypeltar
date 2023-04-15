@@ -159,16 +159,6 @@ class _ProfileState extends State<Profile> {
                   height: 20,
                 ),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 40, top: 10),
-                      child: ElevatedButton(
-                          onPressed: () {}, child: const Text('Edit')),
-                    ),
-                  ],
-                )
               ],
             ),
           ),

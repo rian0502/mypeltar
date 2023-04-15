@@ -11,7 +11,7 @@ class SettingScreens extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: [
         const SizedBox(
           height: 50,
@@ -26,7 +26,7 @@ class SettingScreens extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 30, left: 20, right: 20),
+          padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -41,18 +41,21 @@ class SettingScreens extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        FutureBuilder(
-            builder: (context, AsyncSnapshot<Map<String, String>> snapshot) {
-              if (snapshot.hasData) {
-                return DashboardProfile(
-                  name: snapshot.data!['nama'],
-                  email: snapshot.data!['email'],
-                );
-              } else {
-                return const CircularProgressIndicator();
-              }
-            },
-            future: _getUserName()),
+        Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: FutureBuilder(
+              builder: (context, AsyncSnapshot<Map<String, String>> snapshot) {
+                if (snapshot.hasData) {
+                  return DashboardProfile(
+                    name: snapshot.data!['nama'],
+                    email: snapshot.data!['email'],
+                  );
+                } else {
+                  return const CircularProgressIndicator();
+                }
+              },
+              future: _getUserName()),
+        ),
         Padding(
           padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Row(
@@ -69,46 +72,153 @@ class SettingScreens extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        FutureBuilder(
-            builder: (context, AsyncSnapshot<Map<String, String>> snapshot) {
-              if (snapshot.hasData) {
-                return DashboardProfile(
-                  name: snapshot.data!['nama'],
-                  email: snapshot.data!['email'],
-                );
-              } else {
-                return const CircularProgressIndicator();
-              }
-            },
-            future: _getUserName()),
         Padding(
-          padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text('Credits',
-                  style: GoogleFonts.poppins(
-                      fontSize: 20,
-                      color: const Color(0xff1E3A8A),
-                      fontWeight: FontWeight.w600)),
-            ],
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              boxShadow: [
+                BoxShadow(
+                  spreadRadius: 1,
+                  color: Colors.grey,
+                  blurRadius: 1,
+                  offset: Offset(0, 1), // changes position of shadow
+                ),
+              ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('App Version', style: GoogleFonts.poppins(
+                        color: Color(0xFF134A6E),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 15,
+                      ),),
+                      Text('1.1.1', style: GoogleFonts.poppins(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 15,
+                      ),)
+
+                    ],
+                  ),
+                  const SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Help', style: GoogleFonts.poppins(
+                        color: Color(0xFF134A6E),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 15,
+                      ),),
+                      Text('www.ptbatarahan.co.id', style: GoogleFonts.poppins(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 15,
+                      ),)
+                    ],
+                  )
+                ],
+              ),
+            ),
           ),
         ),
-        FutureBuilder(
-            builder: (context, AsyncSnapshot<Map<String, String>> snapshot) {
-              if (snapshot.hasData) {
-                return DashboardProfile(
-                  name: snapshot.data!['nama'],
-                  email: snapshot.data!['email'],
-                );
-              } else {
-                return const CircularProgressIndicator();
-              }
-            },
-            future: _getUserName()),
         const SizedBox(
-          height: 10,
+          height: 20,
         ),
+        Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              boxShadow: [
+                BoxShadow(
+                  spreadRadius: 1,
+                  color: Colors.grey,
+                  blurRadius: 1,
+                  offset: Offset(0, 1), // changes position of shadow
+                ),
+              ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Agus Sunyoto\nAdi Ersalado', style: GoogleFonts.poppins(
+                        color: Color(0xFF134A6E),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 15,
+                      ),),
+                      Text('Product Manager', style: GoogleFonts.poppins(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 10,
+                      ),)
+                    ],
+                  ),
+                  const SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Aninda A Andiani', style: GoogleFonts.poppins(
+                        color: Color(0xFF134A6E),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 15,
+                      ),),
+                      Text('Designer', style: GoogleFonts.poppins(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 10,
+                      ))
+                    ],
+                  ),
+                  const SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Muhammad Febrian H\nMuhammad Wirasena', style: GoogleFonts.poppins(
+                        color: Color(0xFF134A6E),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 15,
+                      ),),
+                      Text('Front End Developer', style: GoogleFonts.poppins(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 10,
+                      ))
+                    ],
+                  ),
+                  const SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Tomi Andreansyah', style: GoogleFonts.poppins(
+                        color: Color(0xFF134A6E),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 15,
+                      ),),
+                      Text('Back End Developer', style: GoogleFonts.poppins(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 10,
+                      ))
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 15,),
         Padding(
           padding: const EdgeInsets.only(right: 20),
           child: Row(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mypeltar/services/assets_services.dart';
 import 'package:provider/provider.dart';
 import 'package:mypeltar/mypeltar_theme.dart';
 import 'package:mypeltar/routes/app_route.dart';
