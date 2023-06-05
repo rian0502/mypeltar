@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mypeltar/models/assets.dart';
 import 'package:mypeltar/screens/list_assets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../services/assets_services.dart';
 
 class AssetsScreens extends StatefulWidget {
   const AssetsScreens({Key? key}) : super(key: key);

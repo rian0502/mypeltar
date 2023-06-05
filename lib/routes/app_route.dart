@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mypeltar/screens/form_inspection_screen.dart';
 import 'package:mypeltar/screens/inspection_report_screen.dart';
 import 'package:mypeltar/screens/maintenance_screen.dart';
 import 'package:mypeltar/screens/scanner_screens.dart';
@@ -41,6 +42,14 @@ class AppRoute {
           },
         ),
         GoRoute(
+          name: '/form-insepction',
+          path: '/form-insepction',
+          builder: (context, state) {
+            String? id = state.extra as String;
+            return FormInspection(id: id,);
+          },
+        ),
+        GoRoute(
           name: 'home',
           path: '/:tab',
           builder: (context, state) {
@@ -78,6 +87,7 @@ class AppRoute {
                 builder: (context, state) => const AssetsScreens()),
           ],
         ),
+
       ],
       redirect: (context, state) {
         if(state.subloc == '/login'){

@@ -11,7 +11,7 @@ class ListAssets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: AssetsServices.getAll(token),
+      future: AssetsServices.getAll(token, '1'),
       builder: (BuildContext context, AsyncSnapshot<Assets> snapshot) {
         if (snapshot.hasData) {
           return ListView.builder(
@@ -28,7 +28,7 @@ class ListAssets extends StatelessWidget {
                     child: AssetTile(
                       namaAset: snapshot.data!.asset![index].namaAsset,
                       merkAset: snapshot.data!.asset![index].merk,
-                      lokasi: snapshot.data!.asset![index].lokasi,
+                      lokasi: snapshot.data!.asset![index].lokasi!.unit,
                     )),
               );
             },

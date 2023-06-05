@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 Assets assetsFromJson(String str) => Assets.fromJson(json.decode(str));
@@ -7,7 +6,7 @@ class Assets {
   String? status;
   List<Asset>? asset;
 
-  Assets({this.status, this.asset});
+  Assets({status, asset});
 
   Assets.fromJson(Map<String, dynamic> json) {
     status = json['status'];
@@ -21,9 +20,9 @@ class Assets {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['status'] = this.status;
-    if (this.asset != null) {
-      data['asset'] = this.asset!.map((v) => v.toJson()).toList();
+    data['status'] = status;
+    if (asset != null) {
+      data['asset'] = asset!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -32,66 +31,103 @@ class Assets {
 class Asset {
   int? id;
   String? stockcode;
+  String? codeAsset;
   String? serialnumber;
   String? namaAsset;
   String? merk;
   String? model;
   String? spesifikasi;
   String? deskripsi;
-  String? lokasi;
+  Lokasi? lokasi;
   List<Kategori>? kategori;
-  Status? status;
+  String? status;
+  String? updatedAt;
+  String? createdAt;
 
   Asset(
-      {this.id,
-        this.stockcode,
-        this.serialnumber,
-        this.namaAsset,
-        this.merk,
-        this.model,
-        this.spesifikasi,
-        this.deskripsi,
-        this.lokasi,
-        this.kategori,
-        this.status});
+      {id,
+        stockcode,
+        codeAsset,
+        serialnumber,
+        namaAsset,
+        merk,
+        model,
+        spesifikasi,
+        deskripsi,
+        lokasi,
+        kategori,
+        status,
+        updatedAt,
+        createdAt});
 
   Asset.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     stockcode = json['stockcode'];
+    codeAsset = json['code_asset'];
     serialnumber = json['serialnumber'];
     namaAsset = json['nama_asset'];
     merk = json['merk'];
     model = json['model'];
     spesifikasi = json['spesifikasi'];
     deskripsi = json['deskripsi'];
-    lokasi = json['lokasi'];
+    lokasi =
+    json['lokasi'] != null ? Lokasi.fromJson(json['lokasi']) : null;
     if (json['kategori'] != null) {
       kategori = <Kategori>[];
       json['kategori'].forEach((v) {
-        kategori!.add(new Kategori.fromJson(v));
+        kategori!.add(Kategori.fromJson(v));
       });
     }
-    status =
-    json['status'] != null ? new Status.fromJson(json['status']) : null;
+    status = json['status'];
+    updatedAt = json['updated_at'];
+    createdAt = json['created_at'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['stockcode'] = this.stockcode;
-    data['serialnumber'] = this.serialnumber;
-    data['nama_asset'] = this.namaAsset;
-    data['merk'] = this.merk;
-    data['model'] = this.model;
-    data['spesifikasi'] = this.spesifikasi;
-    data['deskripsi'] = this.deskripsi;
-    data['lokasi'] = this.lokasi;
-    if (this.kategori != null) {
-      data['kategori'] = this.kategori!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['stockcode'] = stockcode;
+    data['code_asset'] = codeAsset;
+    data['serialnumber'] = serialnumber;
+    data['nama_asset'] = namaAsset;
+    data['merk'] = merk;
+    data['model'] = model;
+    data['spesifikasi'] = spesifikasi;
+    data['deskripsi'] = deskripsi;
+    if (lokasi != null) {
+      data['lokasi'] = lokasi!.toJson();
     }
-    if (this.status != null) {
-      data['status'] = this.status!.toJson();
+    if (kategori != null) {
+      data['kategori'] = kategori!.map((v) => v.toJson()).toList();
     }
+    data['status'] = status;
+    data['updated_at'] = updatedAt;
+    data['created_at'] = createdAt;
+    return data;
+  }
+}
+
+class Lokasi {
+  int? id;
+  String? unit;
+  String? createdAt;
+  String? updatedAt;
+
+  Lokasi({id, unit, createdAt, updatedAt});
+
+  Lokasi.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    unit = json['unit'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['unit'] = unit;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }
@@ -105,12 +141,12 @@ class Kategori {
   Pivot? pivot;
 
   Kategori(
-      {this.id,
-        this.kategori,
-        this.idSubsatker,
-        this.createdAt,
-        this.updatedAt,
-        this.pivot});
+      {id,
+        kategori,
+        idSubsatker,
+        createdAt,
+        updatedAt,
+        pivot});
 
   Kategori.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -118,18 +154,18 @@ class Kategori {
     idSubsatker = json['id_subsatker'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    pivot = json['pivot'] != null ? new Pivot.fromJson(json['pivot']) : null;
+    pivot = json['pivot'] != null ? Pivot.fromJson(json['pivot']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['kategori'] = this.kategori;
-    data['id_subsatker'] = this.idSubsatker;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    if (this.pivot != null) {
-      data['pivot'] = this.pivot!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['kategori'] = kategori;
+    data['id_subsatker'] = idSubsatker;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    if (pivot != null) {
+      data['pivot'] = pivot!.toJson();
     }
     return data;
   }
@@ -139,7 +175,7 @@ class Pivot {
   int? assetId;
   int? categoryId;
 
-  Pivot({this.assetId, this.categoryId});
+  Pivot({assetId, categoryId});
 
   Pivot.fromJson(Map<String, dynamic> json) {
     assetId = json['asset_id'];
@@ -147,34 +183,9 @@ class Pivot {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['asset_id'] = this.assetId;
-    data['category_id'] = this.categoryId;
-    return data;
-  }
-}
-
-class Status {
-  int? id;
-  String? status;
-  String? createdAt;
-  String? updatedAt;
-
-  Status({this.id, this.status, this.createdAt, this.updatedAt});
-
-  Status.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    status = json['status'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['status'] = this.status;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['asset_id'] = assetId;
+    data['category_id'] = categoryId;
     return data;
   }
 }

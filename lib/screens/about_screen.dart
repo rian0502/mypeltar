@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mypeltar/models/detail_asset.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -39,7 +40,7 @@ class _AboutScreenState extends State<AboutScreen> {
                 ),
                 Image.asset('assets/images/dumylogo.jpg'),
                 const SizedBox(
-                  height: 80,
+                  height: 200,
                 ),
                 Expanded(
                     child: Container(
@@ -56,7 +57,7 @@ class _AboutScreenState extends State<AboutScreen> {
                           top: 20,
                           left: 10,
                           child: Text(
-                            snapshot.data!.namaAsset ?? '-',
+                            snapshot.data!.data!.namaAsset ?? '-',
                             style: GoogleFonts.poppins(
                               fontSize: 20,
                               fontWeight: FontWeight.w700,
@@ -65,10 +66,10 @@ class _AboutScreenState extends State<AboutScreen> {
                           ),
                         ),
                         Positioned(
-                          top: 50,
+                          top: 60,
                           left: 10,
                           child: Text(
-                            snapshot.data!.lokasi ?? '-',
+                            snapshot.data!.data!.lokasi!.unit ?? '-',
                             style: GoogleFonts.poppins(
                               fontSize: 15,
                               fontWeight: FontWeight.w700,
@@ -77,10 +78,10 @@ class _AboutScreenState extends State<AboutScreen> {
                           ),
                         ),
                         Positioned(
-                          top: 70,
+                          top: 100,
                           left: 10,
                           child: Text(
-                            snapshot.data!.serialnumber ?? '-',
+                            snapshot.data!.data!.serialnumber ?? '-',
                             style: GoogleFonts.poppins(
                               fontSize: 20,
                               fontWeight: FontWeight.w700,
@@ -89,21 +90,21 @@ class _AboutScreenState extends State<AboutScreen> {
                           ),
                         ),
                         Positioned(
-                          top: 280,
-                          left: 40,
+                          top: 200,
+                          left: MediaQuery.of(context).size.width / 2 - 50,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              _buttonRounded('History', 'History', context),
+                              _buttonRounded('Inspection', '/form-insepction',
+                                  snapshot.data!.data!.id.toString(), context),
                               const SizedBox(
                                 width: 20,
                               ),
-                              _buttonRounded(
-                                  'Maintenance', 'maintenance', context),
                               const SizedBox(
                                 width: 20,
                               ),
-                              _buttonRounded('Detail', 'Detail', context),
+                              _buttonRounded('Detail', '/detail',
+                                  snapshot.data!.data!.id.toString(), context),
                             ],
                           ),
                         ),
@@ -124,10 +125,11 @@ class _AboutScreenState extends State<AboutScreen> {
   }
 
   //widget button rounded
-  Widget _buttonRounded(String title, String route, BuildContext context) {
+  Widget _buttonRounded(
+      String title, String route, String id, BuildContext context) {
     return InkWell(
       onTap: () {
-        print(route);
+        context.push(route, extra: id);
       },
       child: Container(
         height: 30,

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mypeltar/models/categories.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/locations.dart';
-import '../services/dropdown_service.dart';
-import 'list_assets.dart';
+
 
 class MaintenanceScreen extends StatefulWidget {
   const MaintenanceScreen({Key? key}) : super(key: key);
@@ -16,16 +13,13 @@ class MaintenanceScreen extends StatefulWidget {
 
 class _MaintenanceScreenState extends State<MaintenanceScreen>
     with TickerProviderStateMixin {
-  String _token = '';
   TabController? _tabController;
-  String? _categories;
-  String? _locations;
   String? idCategories;
+
   @override
   void initState() {
     SharedPreferences.getInstance().then((value) {
       setState(() {
-        _token = value.getString('token')!;
       });
     });
     super.initState();
@@ -116,7 +110,7 @@ class _MaintenanceScreenState extends State<MaintenanceScreen>
                 child: Text('Report'),
               ),
               Center(
-                child: Text('Inspection'),
+                child: Text('Process'),
               ),
               Center(
                 child: Text('Maintained'),
