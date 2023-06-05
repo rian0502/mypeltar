@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -94,7 +95,17 @@ class AppState extends ChangeNotifier {
   }
 
   Future<void> initializeApp() async {
-    print('status login: ${_sharedPreferences.getBool('isLogin')}');
-    _isLogin = _sharedPreferences.getBool('isLogin') ?? false;
+    var dio = Dio();
+    dio.options.headers['content-Type'] = 'application/json';
+    dio.options.headers['Authorization'] =
+        'Bearer ${_sharedPreferences.getString('token')}';
+    var response = await dio.get('http://10.0.2.2:8000/api/v1/auth/profile');
+    if (response.statusCode == 200) {
+      _isLogin = true;
+    }else if(response.statusCode == 403){
+      _isLogin = false;
+    }else{
+      _isLogin = false;
+    }
   }
 }

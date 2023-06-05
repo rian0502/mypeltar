@@ -24,7 +24,7 @@ class ListAssets extends StatelessWidget {
                 },
                 child: Padding(
                     padding:
-                        const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                    const EdgeInsets.only(left: 20, right: 20, bottom: 20),
                     child: AssetTile(
                       namaAset: snapshot.data!.asset![index].namaAsset,
                       merkAset: snapshot.data!.asset![index].merk,
@@ -33,7 +33,7 @@ class ListAssets extends StatelessWidget {
               );
             },
           );
-        } else {
+        }else {
           return const Center(child: CircularProgressIndicator());
         }
       },

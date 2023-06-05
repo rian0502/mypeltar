@@ -90,9 +90,11 @@ class AppRoute {
 
       ],
       redirect: (context, state) {
+
         if(state.subloc == '/login'){
           return appState!.isLogin ? '/home' : '/login';
         }
+
         return null;
       });
 }
