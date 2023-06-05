@@ -5,13 +5,13 @@ import 'package:mypeltar/services/assets_services.dart';
 import '../models/assets.dart';
 
 class ListAssets extends StatelessWidget {
-  String token;
-  ListAssets({Key? key, required this.token}) : super(key: key);
+  String? token;
+  ListAssets({Key? key,  this.token}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: AssetsServices.getAll(token, '1'),
+      future: AssetsServices.getAll(token!, '1'),
       builder: (BuildContext context, AsyncSnapshot<Assets> snapshot) {
         if (snapshot.hasData) {
           return ListView.builder(
