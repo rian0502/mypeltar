@@ -13,6 +13,7 @@ class AssetsServices {
       dio.options.headers['content-Type'] = 'application/json';
       dio.options.headers['Authorization'] = 'Bearer $token';
       var response = await dio.get('${url}getall?page=$page');
+      print('token : $token');
       if (response.statusCode == 200) {
         return Assets.fromJson(response.data);
       }else{

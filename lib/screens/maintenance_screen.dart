@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mypeltar/screens/maintenance_all.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MaintenanceScreen extends StatefulWidget {
@@ -12,13 +13,15 @@ class MaintenanceScreen extends StatefulWidget {
 
 class _MaintenanceScreenState extends State<MaintenanceScreen>
     with TickerProviderStateMixin {
+  String? token;
   TabController? _tabController;
-  String? idCategories;
 
   @override
   void initState() {
     SharedPreferences.getInstance().then((value) {
-      setState(() {});
+      setState(() {
+        token = value.getString('token');
+      });
     });
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
@@ -102,9 +105,9 @@ class _MaintenanceScreenState extends State<MaintenanceScreen>
         Expanded(
           child: TabBarView(
             controller: _tabController!,
-            children: const [
+            children:  [
               Center(
-                child: Text('Report'),
+                child: MaintenanceAll(token: token),
               ),
               Center(
                 child: Text('Process'),
