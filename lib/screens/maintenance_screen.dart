@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class MaintenanceScreen extends StatefulWidget {
   const MaintenanceScreen({Key? key}) : super(key: key);
 
@@ -19,8 +18,7 @@ class _MaintenanceScreenState extends State<MaintenanceScreen>
   @override
   void initState() {
     SharedPreferences.getInstance().then((value) {
-      setState(() {
-      });
+      setState(() {});
     });
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
@@ -98,7 +96,6 @@ class _MaintenanceScreenState extends State<MaintenanceScreen>
             ],
           ),
         ),
-
         const SizedBox(
           height: 20,
         ),

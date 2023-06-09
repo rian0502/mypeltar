@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mypeltar/services/assets_services.dart';
 import 'package:provider/provider.dart';
 import 'package:mypeltar/mypeltar_theme.dart';
 import 'package:mypeltar/routes/app_route.dart';
@@ -41,6 +40,7 @@ class _MyPeltarState extends State<MyPeltar> {
           routerDelegate: _appRoute.router.routerDelegate,
           routeInformationParser: _appRoute.router.routeInformationParser,
           routeInformationProvider: _appRoute.router.routeInformationProvider,
-        ));
+        )
+    );
   }
 }

@@ -6,25 +6,30 @@ class Login {
   String? status;
   User? user;
   Authorisation? authorisation;
+  ApiKey? apiKey;
 
-  Login({this.status, this.user, this.authorisation});
+  Login({this.status, this.user, this.authorisation, this.apiKey});
 
   Login.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    user = json['user'] != null ? new User.fromJson(json['user']) : null;
+    user = json['user'] != null ? User.fromJson(json['user']) : null;
     authorisation = json['authorisation'] != null
-        ? new Authorisation.fromJson(json['authorisation'])
+        ? Authorisation.fromJson(json['authorisation'])
         : null;
+    apiKey = json['api-key'] != null ? ApiKey.fromJson(json['api-key']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    if (this.user != null) {
-      data['user'] = this.user!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    if (user != null) {
+      data['user'] = user!.toJson();
     }
-    if (this.authorisation != null) {
-      data['authorisation'] = this.authorisation!.toJson();
+    if (authorisation != null) {
+      data['authorisation'] = authorisation!.toJson();
+    }
+    if (apiKey != null) {
+      data['api-key'] = apiKey!.toJson();
     }
     return data;
   }
@@ -40,11 +45,11 @@ class User {
 
   User(
       {this.nama,
-        this.email,
-        this.username,
-        this.role,
-        this.subsatker,
-        this.satker});
+      this.email,
+      this.username,
+      this.role,
+      this.subsatker,
+      this.satker});
 
   User.fromJson(Map<String, dynamic> json) {
     nama = json['nama'];
@@ -52,23 +57,22 @@ class User {
     username = json['username'];
     role = json['role'].cast<String>();
     subsatker = json['subsatker'] != null
-        ? new Subsatker.fromJson(json['subsatker'])
+        ? Subsatker.fromJson(json['subsatker'])
         : null;
-    satker =
-    json['satker'] != null ? new Satker.fromJson(json['satker']) : null;
+    satker = json['satker'] != null ? Satker.fromJson(json['satker']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nama'] = this.nama;
-    data['email'] = this.email;
-    data['username'] = this.username;
-    data['role'] = this.role;
-    if (this.subsatker != null) {
-      data['subsatker'] = this.subsatker!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['nama'] = nama;
+    data['email'] = email;
+    data['username'] = username;
+    data['role'] = role;
+    if (subsatker != null) {
+      data['subsatker'] = subsatker!.toJson();
     }
-    if (this.satker != null) {
-      data['satker'] = this.satker!.toJson();
+    if (satker != null) {
+      data['satker'] = satker!.toJson();
     }
     return data;
   }
@@ -86,9 +90,9 @@ class Subsatker {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['subsatker'] = this.subsatker;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['subsatker'] = subsatker;
     return data;
   }
 }
@@ -105,9 +109,9 @@ class Satker {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['satker'] = this.satker;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['satker'] = satker;
     return data;
   }
 }
@@ -124,9 +128,28 @@ class Authorisation {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['token'] = this.token;
-    data['type'] = this.type;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['token'] = token;
+    data['type'] = type;
+    return data;
+  }
+}
+
+class ApiKey {
+  String? apiKey;
+  String? expirationDate;
+
+  ApiKey({this.apiKey, this.expirationDate});
+
+  ApiKey.fromJson(Map<String, dynamic> json) {
+    apiKey = json['api_key'];
+    expirationDate = json['expiration_date'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['api_key'] = apiKey;
+    data['expiration_date'] = expirationDate;
     return data;
   }
 }

@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import '../models/login.dart';
 
 class AuthServices {
-  static String url = 'http://10.0.2.2:8000/api/v1/auth/';
+  static String url = 'http://peltar.hasibuanapp.site/api/v1/auth/';
 
   static Future<Login> loginAccess(String username, String password) async {
     try{

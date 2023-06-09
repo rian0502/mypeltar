@@ -4,7 +4,7 @@ import 'package:mypeltar/models/categories.dart';
 import '../models/locations.dart';
 
 class DropdownServices {
-  static const String _url = 'http://10.0.2.2:8000/api/v1/';
+  static const String _url = 'http://peltar.hasibuanapp.site/api/v1/';
 
   static Future<List<Categories>> getAll(String token) async {
     try {
