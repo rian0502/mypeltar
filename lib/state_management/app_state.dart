@@ -99,7 +99,7 @@ class AppState extends ChangeNotifier {
     dio.options.headers['content-Type'] = 'application/json';
     dio.options.headers['Authorization'] =
         'Bearer ${_sharedPreferences.getString('token')}';
-    var response = await dio.get('http://peltar.hasibuanapp.site/api/v1/auth/profile');
+    var response = await dio.get('http://192.168.1.10:8000/api/v1/auth/profile');
     if (response.statusCode == 200) {
       _isLogin = true;
     }else if(response.statusCode == 403){

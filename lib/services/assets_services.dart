@@ -5,7 +5,7 @@ import '../models/assets.dart';
 import '../models/detail_asset.dart';
 
 class AssetsServices {
-  static String url = 'http://peltar.hasibuanapp.site/api/v1/asset/';
+  static String url = 'http://192.168.1.10:8000/api/v1/asset/';
 
    static Future<Assets> getAll(String token, String page) async {
     try {

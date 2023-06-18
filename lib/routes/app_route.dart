@@ -41,6 +41,13 @@ class AppRoute {
             return  AboutScreen(id: id,);
           },
         ),
+        GoRoute(path: '/maintenance/detail',
+            name: '/maintenance/detail',
+            builder: (context, state) {
+              int? id = state.extra as int;
+              return Placeholder();
+          }
+        ),
         GoRoute(
           name: '/form-insepction',
           path: '/form-insepction',

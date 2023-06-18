@@ -24,7 +24,7 @@ class MaintenanceTile extends StatelessWidget {
         ],
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
               padding: const EdgeInsets.only(left: 10, right: 10, top: 10),

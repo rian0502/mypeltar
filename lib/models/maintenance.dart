@@ -247,7 +247,7 @@ class Lokasi {
 class Kategori {
   int? id;
   String? kategori;
-  int? idSubsatker;
+  String? idSubsatker;
   String? createdAt;
   String? updatedAt;
   Pivot? pivot;
@@ -284,8 +284,8 @@ class Kategori {
 }
 
 class Pivot {
-  int? assetId;
-  int? categoryId;
+  String? assetId;
+  String? categoryId;
 
   Pivot({this.assetId, this.categoryId});
 
