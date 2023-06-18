@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mypeltar/screens/detail_maintenance.dart';
 import 'package:mypeltar/screens/form_inspection_screen.dart';
 import 'package:mypeltar/screens/inspection_report_screen.dart';
 import 'package:mypeltar/screens/maintenance_screen.dart';
@@ -38,22 +39,26 @@ class AppRoute {
           name: '/detail-asset',
           builder: (context, state) {
             String? id = state.extra as String;
-            return  AboutScreen(id: id,);
+            return AboutScreen(
+              id: id,
+            );
           },
         ),
-        GoRoute(path: '/maintenance/detail',
+        GoRoute(
+            path: '/maintenance/detail',
             name: '/maintenance/detail',
             builder: (context, state) {
               int? id = state.extra as int;
-              return Placeholder();
-          }
-        ),
+              return const DetailMaintenance();
+            }),
         GoRoute(
           name: '/form-insepction',
           path: '/form-insepction',
           builder: (context, state) {
             String? id = state.extra as String;
-            return FormInspection(id: id,);
+            return FormInspection(
+              id: id,
+            );
           },
         ),
         GoRoute(
@@ -94,14 +99,11 @@ class AppRoute {
                 builder: (context, state) => const AssetsScreens()),
           ],
         ),
-
       ],
       redirect: (context, state) {
-
-        if(state.subloc == '/login'){
+        if (state.subloc == '/login') {
           return appState!.isLogin ? '/home' : '/login';
         }
-
         return null;
       });
 }
