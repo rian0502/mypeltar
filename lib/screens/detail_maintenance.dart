@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mypeltar/models/maintenance.dart';
 
-class DetailMaintenance extends StatefulWidget {
-  const DetailMaintenance({super.key});
+class DetailMaintenance extends StatelessWidget {
+  Maintenance maintenance;
+  DetailMaintenance({super.key, required this.maintenance});
 
-  @override
-  State<DetailMaintenance> createState() => _DetailMaintenanceState();
-}
-
-class _DetailMaintenanceState extends State<DetailMaintenance> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,109 +41,61 @@ class _DetailMaintenanceState extends State<DetailMaintenance> {
               ],
             ),
           ),
-          Expanded(
-            child: ListView(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 20, top: 40, bottom: 20),
-                  child: Row(
+          const SizedBox(
+            height: 20,
+          ),
+          Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+              child: Column(
+                children: [
+                  Row(
                     children: [
                       Text(
-                        'Asset Name \nAsset ID',
+                        maintenance.asset!.namaAsset!,
                         style: GoogleFonts.poppins(
                           fontSize: 20,
+                          fontWeight: FontWeight.w500,
                           color: Colors.grey,
-                          fontWeight: FontWeight.w700,
                         ),
                       ),
                     ],
                   ),
+                  Row(
+                    children: [
+                      Text(
+                        maintenance.asset!.codeAsset!,
+                        style: GoogleFonts.poppins(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {}, child: Text('Add Update')),
+                    ],
+                  ),
+                ],
+              )),
+          Expanded(
+              child: ListView.builder(
+            itemCount: maintenance.history!.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
+                child: Card(
+                  child: ListTile(
+                    title: Text(maintenance.history![index].status!),
+                    subtitle: Text(maintenance.history![index].deskripsi!),
+                  ),
                 ),
-                Stepper(steps: [
-                  Step(
-                    title: const Text('Step 1'),
-                    content: Container(),
-                  ),
-                  const Step(
-                    title: Text('Step 2'),
-                    content: Text('Content for Step 2'),
-                  ),
-                  const Step(
-                    title: Text('Step 3'),
-                    content: Text('Content for Step 3'),
-                  ),
-                  const Step(
-                    title: Text('Step 4'),
-                    content: Text('Content for Step 4'),
-                  ),
-                  const Step(
-                    title: Text('Step 5'),
-                    content: Text('Content for Step 5'),
-                  ),
-                  const Step(
-                    title: Text('Step 6'),
-                    content: Text('Content for Step 6'),
-                  ),
-                  const Step(
-                    title: Text('Step 7'),
-                    content: Text('Content for Step 7'),
-                  ),
-                  const Step(
-                    title: Text('Step 8'),
-                    content: Text('Content for Step 8'),
-                  ),
-                  const Step(
-                    title: Text('Step 9'),
-                    content: Text('Content for Step 9'),
-                  ),
-                  const Step(
-                    title: Text('Step 10'),
-                    content: Text('Content for Step 10'),
-                  ),
-                  const Step(
-                    title: Text('Step 11'),
-                    content: Text('Content for Step 11'),
-                  ),
-                  const Step(
-                    title: Text('Step 12'),
-                    content: Text('Content for Step 12'),
-                  ),
-                  const Step(
-                    title: Text('Step 13'),
-                    content: Text('Content for Step 13'),
-                  ),
-                  const Step(
-                    title: Text('Step 14'),
-                    content: Text('Content for Step 14'),
-                  ),
-                  const Step(
-                    title: Text('Step 15'),
-                    content: Text('Content for Step 15'),
-                  ),
-                  const Step(
-                    title: Text('Step 16'),
-                    content: Text('Content for Step 16'),
-                  ),
-                  const Step(
-                    title: Text('Step 17'),
-                    content: Text('Content for Step 17'),
-                  ),
-                  const Step(
-                    title: Text('Step 18'),
-                    content: Text('Content for Step 18'),
-                  ),
-                  const Step(
-                    title: Text('Step 19'),
-                    content: Text('Content for Step 19'),
-                  ),
-                  const Step(
-                    title: Text('Step 20'),
-                    content: Text('Content for Step 20'),
-                  ),
-                ])
-              ],
-            ),
-          )
+              );
+            },
+          ))
         ],
       ),
     );

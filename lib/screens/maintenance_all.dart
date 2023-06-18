@@ -24,7 +24,7 @@ class MaintenanceAll extends StatelessWidget {
                   child: GestureDetector(
                       onTap: () {
                         context.push('/maintenance/detail',
-                            extra: snapshot.data![index].id);
+                            extra: snapshot.data![index]);
                       },
                       child: MaintenanceTile(
                         namaAset: snapshot.data![index].asset!.lokasi!.unit,

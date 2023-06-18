@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mypeltar/models/maintenance.dart';
 import 'package:mypeltar/screens/detail_maintenance.dart';
 import 'package:mypeltar/screens/form_inspection_screen.dart';
 import 'package:mypeltar/screens/inspection_report_screen.dart';
@@ -48,8 +49,8 @@ class AppRoute {
             path: '/maintenance/detail',
             name: '/maintenance/detail',
             builder: (context, state) {
-              int? id = state.extra as int;
-              return const DetailMaintenance();
+              Maintenance maintenance = state.extra as Maintenance;
+              return DetailMaintenance(maintenance: maintenance,);
             }),
         GoRoute(
           name: '/form-insepction',
